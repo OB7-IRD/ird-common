@@ -3,17 +3,15 @@ package fr.ird.common.configuration;
 import java.io.File;
 
 /**
- * 
- * @author Pascal Cauquil <pascal.cauquil@ird.fr>
+ * Class utility for the application's configuration.
+ *
+ * @author Julien Lebranchu <julien.lebranchu@ird.fr>
  * @version 1.0
+ * @author Pascal Cauquil <pascal.cauquil@ird.fr>
+ * @since 0.1
  * @date 25 nov. 2013
  */
 public class AppConfig {
-
-    /**
-     * Constants
-     */
-    public static final String RELATIVE_CONFIG_PATH = "appconfig" + File.separator + "eva" + File.separator;
 
     /**
      * Returns a File object representing a file found on the file system
@@ -161,4 +159,9 @@ public class AppConfig {
 
         return fullpath;
     }
+
+    public static String getRelativeConfigPath(String projectName) {
+        return "appconfig" + File.separator + projectName + File.separator;
+    }
+
 }

@@ -1,13 +1,13 @@
 package fr.ird.common;
 
-
 import java.math.BigDecimal;
 
-
 /**
+ * Miscellaneous class utility methods.
  *
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
- * @version 0.0
+ * @version 1.0
+ * @since 1.0
  * @date 13 déc. 2013
  */
 public class Utils {
