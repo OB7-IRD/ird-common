@@ -27,7 +27,7 @@ public abstract class IRDProperties {
      * @throws IOException
      *
      */
-    protected Properties loadProperties() throws FileNotFoundException, IOException, Exception {
+    public Properties loadProperties() throws FileNotFoundException, IOException, Exception {
         if (PROJECT_NAME == null && PROJECT_CONFIG_FILENAME == null) {
             throw new Exception("You must set PROJECT_CONFIG_FILENAME and PROJECT_NAME.");
         }
