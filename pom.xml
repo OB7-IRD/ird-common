@@ -33,5 +33,30 @@
             <version>2.2</version>
             <type>jar</type>
         </dependency>
-    </dependencies>
+    </dependencies>    
+    <build>
+        <plugins>            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <configuration>
+                    <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+
+                    <!-- <docletPath>/path/to/UmlGraph.jar</docletPath> -->
+                    <docletArtifact>
+                        <groupId>org.umlgraph</groupId>
+                        <artifactId>umlgraph</artifactId>
+                        <version>5.6.6</version>
+                    </docletArtifact>
+                    <additionalparam>
+                        -inferrel -inferdep -quiet -hide java.* -hide org.eclipse.* -collpackages java.util.* -postfixpackage
+                        -nodefontsize 9 -nodefontpackagesize 7 -attributes -types -visibility -operations -constructors
+                        -enumerations -enumconstants -views
+                    </additionalparam>
+                    <useStandardDocletOptions>true</useStandardDocletOptions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
