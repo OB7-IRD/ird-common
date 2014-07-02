@@ -1,6 +1,10 @@
 package fr.ird.common;
 
+import fr.ird.common.list.comprehesion.Func;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Miscellaneous class utility methods for the purposes of OT.
@@ -19,11 +23,24 @@ public class OTUtils extends Utils {
      * @param coord the longitude or latitute in degrees decimal
      * @return Integer the value in degrees minutes
      */
-    public static Integer degreesDecimalToDegreesMinutes(Double coord) {
+    public static int degreesDecimalToDegreesMinutes(Double coord) {
         coord = Math.abs(coord);
         long resultat = 100 * (int) Math.floor(coord);
         resultat += Math.round((coord * 60) % 60);
         return (int) resultat;
+    }
+
+    /**
+     * Transforms some coordinates in <em>Degrees Minutes</em> to <em>Degrees
+     * Decimal</em>.
+     *
+     * @param coord the longitude or latitute in degrees minute
+     * @return Double the value in degrees decimal
+     */
+    public static double degreesMinutesToDegreesDecimal(Integer coord) {
+        double resFloor = Math.floor(coord / 100);
+        double resDecimal = ((coord / 100.0) % 1) / 60 * 100;
+        return resDecimal + resFloor;
     }
 
     /**
@@ -141,5 +158,37 @@ public class OTUtils extends Utils {
             compassRose.put(OTUtils.NORTH_BY_WEST, OTUtils.NORTH_BY_WEST_DEGRE);
         }
         return compassRose;
+    }
+
+    public static <T> void applyToListInPlace(List<T> list, Func<T, T> f) {
+        ListIterator<T> itr = list.listIterator();
+        while (itr.hasNext()) {
+            T output = f.apply(itr.next());
+            itr.set(output);
+        }
+    }
+
+    public static <In, Out> List<Out> map(List<In> in, Func<In, Out> f) {
+        List<Out> out = new ArrayList<Out>(in.size());
+        for (In inObj : in) {
+            out.add(f.apply(inObj));
+        }
+        return out;
+    }
+
+    public static Double convertLatitude(int quandrant, int latitude) {
+        double lat = degreesMinutesToDegreesDecimal(latitude);
+        if (quandrant == 3 || quandrant == 2) {
+            return -1 * lat;
+        }
+        return lat;
+    }
+
+    public static Double convertLongitude(int quandrant, int longitude) {
+        double lon = degreesMinutesToDegreesDecimal(longitude);
+        if (quandrant == 3 || quandrant == 4) {
+            return -1 * lon;
+        }
+        return lon;
     }
 }

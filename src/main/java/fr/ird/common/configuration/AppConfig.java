@@ -1,6 +1,11 @@
 package fr.ird.common.configuration;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * Class utility for the application's configuration.
@@ -12,6 +17,30 @@ import java.io.File;
  * @date 25 nov. 2013
  */
 public class AppConfig {
+
+    /**
+     * Copy a file object using a stream object.
+     *
+     * @param source the source file to copy
+     * @param dest the destination file of the copy
+     * @throws IOException
+     */
+    public static void copyFileUsingStream(File source, File dest) throws IOException {
+        InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = new FileInputStream(source);
+            os = new FileOutputStream(dest);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+        } finally {
+            is.close();
+            os.close();
+        }
+    }
 
     /**
      * Returns a File object representing a file found on the file system
@@ -90,16 +119,16 @@ public class AppConfig {
         }
 
         if (home != null && !home.isEmpty()) {
-            fullpath = home + File.separator + relativePath + fileName;
+            fullpath = home + File.separator + relativePath + File.separator + fileName;
         } else if (os != null && !os.isEmpty()) {
             if (os.contains("Linux")) {
-                fullpath = "/var/local/" + relativePath + fileName;
+                fullpath = "/var/local/" + relativePath + File.separator + fileName;
             }
             if (os.contains("Mac OS")) {
-                fullpath = "/var/local/" + relativePath + fileName;
+                fullpath = "/var/local/" + relativePath + File.separator + fileName;
             }
             if (os.contains("Windows")) {
-                fullpath = "c:\\Windows\\system32\\" + relativePath + fileName;
+                fullpath = "c:\\Windows\\system32\\" + relativePath + File.separator + fileName;
             }
         }
 
@@ -161,7 +190,7 @@ public class AppConfig {
     }
 
     public static String getRelativeConfigPath(String projectName) {
-        return "appconfig" + File.separator + projectName + File.separator;
+        return "appconfig" + File.separator + projectName;
     }
 
 }
