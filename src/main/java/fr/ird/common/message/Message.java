@@ -1,5 +1,7 @@
 /*
- * Copyright (C) 2014 IRD
+ * $Id
+ *
+ * Copyright (C) 2014 Observatoire thonier, IRD
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +28,10 @@ import java.util.ResourceBundle;
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
  * @date 25 nov. 2013
  * @since 1.1
+ *
+ * $LastChangedDate$
+ *
+ * $LastChangedRevision$
  */
 public class Message {
 

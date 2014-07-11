@@ -1,3 +1,21 @@
+/*
+ * $Id$
+ *
+ * Copyright (C) 2014 Julien Lebranchu <julien.lebranchu@ird.fr>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package fr.ird.common.configuration;
 
 import java.io.File;
@@ -14,9 +32,12 @@ import java.util.logging.Logger;
  * This properties are stored in a file.
  *
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
- * @version 1.0
  * @since 1.0
  * @date 13 févr. 2014
+ *
+ * $LastChangedDate$
+ *
+ * $LastChangedRevision$
  */
 public abstract class IRDProperties {
 
@@ -53,12 +74,12 @@ public abstract class IRDProperties {
         String filepath = AppConfig.getRelativeConfigPath(PROJECT_NAME);
         String filename = PROJECT_CONFIG_FILENAME;
         if (!configFileExist()) {
-            System.out.println("!configFileExist(): so create the default configuration");
+            System.out.println("Create the default configuration file");
             createDefaultDirectory();
             copyDefaultFile();
 
             try {
-                System.out.println("-------- " + AppConfig.getConfigFile(filepath, filename));
+//                System.out.println("-------- " + AppConfig.getConfigFile(filepath, filename));
                 FileOutputStream fos = new FileOutputStream(AppConfig.getConfigFile(filepath, filename));
                 createDefaultProperties().storeToXML(fos, PROJECT_CONFIG_COMMENT);
                 fos.close();

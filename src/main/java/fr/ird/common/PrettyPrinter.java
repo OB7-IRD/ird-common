@@ -1,7 +1,7 @@
 package fr.ird.common;
 
-import static java.lang.String.format;
 import java.io.PrintStream;
+import static java.lang.String.format;
 
 /**
  *
@@ -9,6 +9,10 @@ import java.io.PrintStream;
  * @version 1.0
  * @date 22 oct. 2013
  * @since 1.0
+ *
+ * $LastChangedDate$
+ *
+ * $LastChangedRevision$
  */
 public final class PrettyPrinter {
 

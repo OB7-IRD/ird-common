@@ -13,6 +13,10 @@ import java.util.ListIterator;
  * @version 1.0
  * @since 1.0
  * @date 14 févr. 2014
+ *
+ * $LastChangedDate$
+ *
+ * $LastChangedRevision$
  */
 public class OTUtils extends Utils {
 

@@ -1,3 +1,21 @@
+/*
+ * $Id$
+ *
+ * Copyright (C) 2013 Julien Lebranchu <julien.lebranchu@ird.fr>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package fr.ird.common.configuration;
 
 import java.io.File;
@@ -11,10 +29,13 @@ import java.io.OutputStream;
  * Class utility for the application's configuration.
  *
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
- * @version 1.0
  * @author Pascal Cauquil <pascal.cauquil@ird.fr>
  * @since 0.1
  * @date 25 nov. 2013
+ *
+ * $LastChangedDate$
+ *
+ * $LastChangedRevision$
  */
 public class AppConfig {
 
@@ -26,6 +47,8 @@ public class AppConfig {
      * @throws IOException
      */
     public static void copyFileUsingStream(File source, File dest) throws IOException {
+        System.out.println("File source " + source);
+        System.out.println("File destin " + dest);
         InputStream is = null;
         OutputStream os = null;
         try {
@@ -37,8 +60,12 @@ public class AppConfig {
                 os.write(buffer, 0, length);
             }
         } finally {
-            is.close();
-            os.close();
+            if (is != null) {
+                is.close();
+            }
+            if (os != null) {
+                os.close();
+            }
         }
     }
 
@@ -131,7 +158,6 @@ public class AppConfig {
                 fullpath = "c:\\Windows\\system32\\" + relativePath + File.separator + fileName;
             }
         }
-
         return fullpath;
     }
 
@@ -184,6 +210,10 @@ public class AppConfig {
             if (fullpath != null) {
                 return fullpath;
             }
+        }
+        File cDir = new File(fullpath);
+        if (cDir.isDirectory() && !cDir.exists()) {
+            cDir.mkdirs();
         }
 
         return fullpath;

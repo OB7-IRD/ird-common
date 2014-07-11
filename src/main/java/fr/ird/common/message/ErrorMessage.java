@@ -1,5 +1,7 @@
 /*
- * Copyright (C) 2014 IRD
+ * $Id
+ *
+ * Copyright (C) 2014 Observatoire thonier, IRD
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +25,10 @@ import java.util.ArrayList;
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
  * @since 1.1
  * @date 23 mai 2014
+ *
+ * $LastChangedDate$
+ *
+ * $LastChangedRevision$
  */
 public class ErrorMessage extends Message {
 
