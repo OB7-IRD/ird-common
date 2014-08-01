@@ -108,7 +108,7 @@ public class Utils {
     /**
      * Compares the equality of two dates, It checks the year, month and day.
      *
-     * @param current
+     * @param current the current date
      * @param reference
      * @return true or false
      */
@@ -127,7 +127,7 @@ public class Utils {
     /**
      * Compares the equality of two dates, It checks the year, month and day.
      *
-     * @param current
+     * @param current the current date
      * @param reference
      * @return true or false
      */
@@ -145,8 +145,8 @@ public class Utils {
      * Compares if the two date are contigous. It checks the year, month and
      * day.
      *
-     * @param current
-     * @param next
+     * @param current the current date
+     * @param next the next day
      * @return true or false
      */
     public static boolean dateIsTheNextDay(Date current, Date next) {
@@ -164,7 +164,7 @@ public class Utils {
      * Compares if the two date are contigous. It checks the year, month and
      * day.
      *
-     * @param current
+     * @param current the current date
      * @param next
      * @return true or false
      */
@@ -344,7 +344,25 @@ public class Utils {
         return date == null ? null : new DateTime(date);
     }
 
+    /**
+     * Convert {@link DateTime} to {@link java.sql.Date} filtering the hour and
+     * minute values.
+     *
+     * @param date the date
+     * @return the date converted
+     */
     public static java.sql.Date convertDate(DateTime date) {
+        return convertFullDate(new DateTime(date.getYear(), date.getMonthOfYear(), date.getDayOfMonth(), 0, 0));
+    }
+
+    /**
+     * Convert {@link DateTime} to {@link java.sql.Date} with all fields (year,
+     * month, day, hour and minute).
+     *
+     * @param date the date
+     * @return the date converted
+     */
+    public static java.sql.Date convertFullDate(DateTime date) {
         return new java.sql.Date(date.getMillis());
     }
 

@@ -67,6 +67,12 @@ public abstract class IRDProperties {
         return prop;
     }
 
+    /**
+     *
+     * Create the default configuration file.
+     *
+     * @throws Exception
+     */
     public void createConfigFile() throws Exception {
         if (PROJECT_NAME == null && PROJECT_CONFIG_FILENAME == null) {
             throw new Exception("You must set PROJECT_CONFIG_FILENAME and PROJECT_NAME.");
@@ -90,12 +96,28 @@ public abstract class IRDProperties {
         }
     }
 
+    /**
+     * Create the default properties.
+     *
+     * @return the property of IRD application
+     */
     public abstract Properties createDefaultProperties();
 
+    /**
+     * Create the default properties.
+     */
     public abstract void createDefaultDirectory();
 
+    /**
+     * Create the default properties.
+     */
     public abstract void copyDefaultFile();
 
+    /**
+     * Tests if the configuration file exists in the appconfig directory.
+     *
+     * @return True if the file exists, or False
+     */
     public boolean configFileExist() {
         String filepath = AppConfig.getRelativeConfigPath(PROJECT_NAME);
         String filename = PROJECT_CONFIG_FILENAME;
@@ -104,6 +126,11 @@ public abstract class IRDProperties {
         return exist;
     }
 
+    /**
+     * Tests if the configuration directory exists in the appconfig directory.
+     *
+     * @return True if the directory exists, or False
+     */
     public boolean configDirectoryExist() {
         String filepath = AppConfig.getRelativeConfigPath(PROJECT_NAME);
         return new File(AppConfig.getConfigDirectory(filepath)).exists();

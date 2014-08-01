@@ -47,8 +47,6 @@ public class AppConfig {
      * @throws IOException
      */
     public static void copyFileUsingStream(File source, File dest) throws IOException {
-        System.out.println("File source " + source);
-        System.out.println("File destin " + dest);
         InputStream is = null;
         OutputStream os = null;
         try {
@@ -219,6 +217,12 @@ public class AppConfig {
         return fullpath;
     }
 
+    /**
+     * Returns a String containing the relative path according the project name.
+     *
+     * @param projectName the project name
+     * @return the relative path
+     */
     public static String getRelativeConfigPath(String projectName) {
         return "appconfig" + File.separator + projectName;
     }
