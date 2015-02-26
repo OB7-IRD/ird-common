@@ -24,6 +24,9 @@ import java.math.BigDecimal;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -33,9 +36,13 @@ import java.util.Set;
 import java.util.TimeZone;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Days;
+import org.joda.time.Hours;
+import org.joda.time.LocalTime;
 import org.joda.time.Period;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -95,6 +102,12 @@ public class Utils {
         printer.print(resultsArray2D);
     }
 
+    /**
+     *
+     * @param value
+     * @param places
+     * @return
+     */
     public static double round(double value, int places) {
         if (places < 0) {
             throw new IllegalArgumentException();
@@ -333,15 +346,51 @@ public class Utils {
     /**
      * Gives the number of minutes associated with a date time.
      *
-     * @param date
-     * @return
+     * @param date the date
+     * @return the number of minutes
      */
     public static int getMinutes(DateTime date) {
         return date.getMinuteOfHour();
     }
 
+    /**
+     *
+     * @param time the time
+     * @return the time converted
+     */
+    public static LocalTime convertTime(Time time) {
+        return time == null ? null : new LocalTime(time.getTime());
+    }
+
+    /**
+     *
+     * @param time the time
+     * @return the time converted
+     */
+    public static Time convertTime(LocalTime time) {
+        return time == null ? null : new Time(time.getMillisOfDay());
+    }
+
+    /**
+     * Convert {@link java.sql.Date} to {@link DateTime}.
+     *
+     * @param date the date
+     * @return the date converted
+     */
     public static DateTime convertDate(Date date) {
         return date == null ? null : new DateTime(date);
+    }
+
+    /**
+     * Convert {@link DateTime} to {@link java.sql.Date} . Alias for
+     * {@link  convertFullDate()}.
+     *
+     * @param date the date
+     * @return the date converted
+     */
+    public static java.sql.Date convertDate(DateTime date) {
+        return date == null ? null : new java.sql.Date(date.getMillis());//convertFullDate(new DateTime(date.getYear(), date.getMonthOfYear(), date.getDayOfMonth(), 0, 0));
+//        return convertFullDate(date);
     }
 
     /**
@@ -351,8 +400,9 @@ public class Utils {
      * @param date the date
      * @return the date converted
      */
-    public static java.sql.Date convertDate(DateTime date) {
-        return convertFullDate(new DateTime(date.getYear(), date.getMonthOfYear(), date.getDayOfMonth(), 0, 0));
+    public static java.sql.Date convertFilteredDate(DateTime date) {
+        return date == null ? null : convertFullDate(new DateTime(date.getYear(), date.getMonthOfYear(), date.getDayOfMonth(), 0, 0));
+
     }
 
     /**
@@ -363,7 +413,7 @@ public class Utils {
      * @return the date converted
      */
     public static java.sql.Date convertFullDate(DateTime date) {
-        return new java.sql.Date(date.getMillis());
+        return date == null ? null : new java.sql.Date(date.getMillis());
     }
 
     /**
@@ -417,5 +467,102 @@ public class Utils {
         }
 
         throw new UnsupportedOperationException("Cannot list files for URL " + dirURL);
+    }
+
+    public static List<String> difference(Collection<String> l1, Collection<String> l2) {
+        l1.removeAll(l2);
+        return new ArrayList<String>(l1);
+    }
+
+    /**
+     * Calcul le nombre d'heures entre deux dates.
+     *
+     * @param start
+     * @param end
+     * @return
+     */
+    public static int differenceHours(Date start, Date end) {
+        final DateTime debut = new DateTime(start.getTime());
+        final DateTime fin = new DateTime(end.getTime());
+        return Hours.hoursBetween(debut, fin).getHours();
+    }
+
+    /**
+     * Calcul le nombre de jours entre deux dates.
+     *
+     * @param start
+     * @param end
+     * @return
+     */
+    public static int differenceDays(Date start, Date end) {
+        final DateTime debut = new DateTime(start.getTime());
+        final DateTime fin = new DateTime(end.getTime());
+        return Days.daysBetween(debut, fin).getDays();
+    }
+
+    /**
+     * Methode temporaire, demander au CERIT de faire la modification de la
+     * valeur retournée par get***DatiDt() de RTP, DEP...
+     *
+     * @param date
+     * @param time
+     * @return
+     */
+    public static DateTime createDateTime(Date date, String time) {
+        String[] timesArray = time.split(":");
+        date.setHours(Integer.valueOf(timesArray[0]));
+        date.setMinutes(Integer.valueOf(timesArray[1]));
+        return new DateTime(date);
+    }
+
+    private static final Pattern pCfr = Pattern.compile("^(?<country>[A-Za-z]{3})(?<code>[0-9A-Za-z]{9})$");
+
+    /**
+     * Check if the vessel cfr matches with the pattern pCfr.
+     *
+     * @param vesselCFR the vessel CFR to validate
+     * @return true if the cfr matches with the format
+     */
+    public static boolean validFormatCFR(String vesselCFR) {
+        Matcher matcherCFR = pCfr.matcher(vesselCFR);
+        return matcherCFR.matches();
+    }
+
+    private static final Pattern pTripNumberLong = Pattern.compile("^(?<country>[A-Za-z]{3})(?<code>[0-9A-Za-z]{9})-(?<tn>[0-9]{8})$");
+    private static final Pattern pTripNumberShort = Pattern.compile("^(?<tn>[0-9]{8})$");
+
+    /**
+     * Check if the trip number matches with the pattern
+     * <em>pTripNumberLong</em> or <em>pTripNumberShort</em>.
+     *
+     * @param tripNumber the trip number to validate
+     * @return true if the trip number matches with the long or short format
+     */
+    public static boolean validFormatTripNumber(String tripNumber) {
+        Matcher matcherTripNumberLong = pTripNumberLong.matcher(tripNumber);
+        Matcher matcherTripNumberShort = pTripNumberShort.matcher(tripNumber);
+        return matcherTripNumberLong.matches() || matcherTripNumberShort.matches();
+    }
+
+    public static boolean validFormatLongTripNumber(String tripNumber) {
+        Matcher matcherTripNumberLong = pTripNumberLong.matcher(tripNumber);
+        return matcherTripNumberLong.matches();
+    }
+
+    public static String createLongTripNumber(String vesselCFR, String tripNumber) {
+        Matcher matcherTripNumberLong = pTripNumberLong.matcher(tripNumber);
+        if (matcherTripNumberLong.matches()) {
+            return tripNumber;
+        }
+        return vesselCFR + "-" + tripNumber;
+    }
+
+    public static String[] splitLongTripNumber(String longTripNumber) {
+        Matcher matcherTripNumberLong = pTripNumberLong.matcher(longTripNumber);
+        if (!matcherTripNumberLong.matches()) {
+            return null;
+        }
+
+        return longTripNumber.split("-");
     }
 }

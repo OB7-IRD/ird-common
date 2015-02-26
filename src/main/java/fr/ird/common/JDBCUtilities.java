@@ -16,6 +16,12 @@ import java.sql.SQLException;
  */
 public class JDBCUtilities {
 
+    /**
+     * Affiche sur la sortie standard l'exception en paramètre en la formatant
+     * préalablement.
+     *
+     * @param ex l'exception à afficher
+     */
     public static void printSQLException(SQLException ex) {
 
         for (Throwable e : ex) {
@@ -43,6 +49,12 @@ public class JDBCUtilities {
         }
     }
 
+    /**
+     * Détermine quels sont les états SQL à ignorer.
+     *
+     * @param sqlState un état SQL
+     * @return si l'état est à ignorer
+     */
     public static boolean ignoreSQLException(String sqlState) {
 
         if (sqlState == null) {

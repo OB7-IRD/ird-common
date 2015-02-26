@@ -22,6 +22,7 @@ import java.io.PrintStream;
 import static java.lang.String.format;
 
 /**
+ * Classe permettant de générer un tableau formater dans une console.
  *
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
  * @date 22 oct. 2013
@@ -57,6 +58,11 @@ public final class PrettyPrinter {
         this.asNull = asNull;
     }
 
+    /**
+     * Affiche le tableau sur la sortie standard.
+     *
+     * @param table le tableau à afficher
+     */
     public void print(String[][] table) {
         if (table == null) {
             throw new IllegalArgumentException("No tabular data provided");

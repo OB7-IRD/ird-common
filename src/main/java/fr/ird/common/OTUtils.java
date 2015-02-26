@@ -23,9 +23,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
 /**
- * Miscellaneous class utility methods for the purposes of OT.
+ * Miscellaneous class utility methods for the purposes of OT. Un quadrant est
+ * une répsentation du globe divisé en quatre au niveau de l'équateur et du
+ * «Prime Meridian».
+ *
+ * @see
+ * <a href="http://commons.wikimedia.org/wiki/File:Cartesian-coordinate-system-with-quadrant.svg">Cartesian
+ * coordinate system with quadrant</a>
  *
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
  * @version 1.0
@@ -45,10 +52,10 @@ public class OTUtils extends Utils {
      * @param coord the longitude or latitute in degrees decimal
      * @return Integer the value in degrees minutes
      */
-    public static int degreesDecimalToDegreesMinutes(Double coord) {
-        coord = Math.abs(coord);
-        long resultat = 100 * (int) Math.floor(coord);
-        resultat += Math.round((coord * 60) % 60);
+    public static int degreesDecimalToDegreesMinutes(final Double coord) {
+        final Double nCoord = Math.abs(coord);
+        long resultat = 100 * (int) Math.floor(nCoord);
+        resultat += Math.round((nCoord * 60) % 60);
         return (int) resultat;
     }
 
@@ -59,20 +66,21 @@ public class OTUtils extends Utils {
      * @param coord the longitude or latitute in degrees minute
      * @return Double the value in degrees decimal
      */
-    public static double degreesMinutesToDegreesDecimal(Integer coord) {
-        double resFloor = Math.floor(coord / 100);
-        double resDecimal = ((coord / 100.0) % 1) / 60 * 100;
+    public static double degreesMinutesToDegreesDecimal(final Integer coord) {
+        final double resFloor = Math.floor(coord / 100);
+        final double resDecimal = ((coord / 100.0) % 1) / 60 * 100;
         return resDecimal + resFloor;
     }
 
     /**
-     * Donne la valeur décimale associée à l'orientation de la rose des vents.
+     * Donne le degré décimale associée à l'orientation de la rose des vents.
+     * Par exemple, l'orientation E, pour EAST, retournera 90.0.
      *
-     * @param cr
-     * @return
+     * @param orientation une orientation de la rose des vents
+     * @return Double the value in degrees decimal
      */
-    public static double compassRoseToDegres(String cr) {
-        return getCompassRose().get(cr);
+    public static double compassRoseToDegres(final String orientation) {
+        return getCompassRose().get(orientation);
     }
     public static final String NORTH = "N";
     public static final String NORTH_BY_EAST = "NbE";
@@ -141,9 +149,12 @@ public class OTUtils extends Utils {
     private static HashMap<String, Double> compassRose;
 
     /**
-     * @return
+     * Association de chaque orientation au sein de la rose des vents au dégré
+     * décimal associé.
+     *
+     * @return la rose des vents
      */
-    public static HashMap<String, Double> getCompassRose() {
+    public static Map<String, Double> getCompassRose() {
         if (compassRose == null) {
             compassRose = new HashMap<String, Double>();
             compassRose.put(OTUtils.NORTH, OTUtils.NORTH_DEGRE);
@@ -182,6 +193,15 @@ public class OTUtils extends Utils {
         return compassRose;
     }
 
+    /**
+     * Applique une fonction sur une liste. Par exemple, il est possible de
+     * multiplier par deux toutes les valeurs d'une liste d'entier.
+     *
+     * @see {@link fr.ird.common.list.comprehesion.Func}
+     * @param <T> le type genérique de la fonction
+     * @param list la liste à traiter
+     * @param f la fonction à appliquer
+     */
     public static <T> void applyToListInPlace(List<T> list, Func<T, T> f) {
         ListIterator<T> itr = list.listIterator();
         while (itr.hasNext()) {
@@ -190,6 +210,16 @@ public class OTUtils extends Utils {
         }
     }
 
+    /**
+     * Creating a mapping from the input list to the output list.
+     *
+     * @see {@link fr.ird.common.list.comprehesion.Func}
+     * @param <In> le type du paramètre d'entrée
+     * @param <Out> le type du paramètre de sortie
+     * @param in la liste d'entrée
+     * @param f la fonction à appliquer
+     * @return la nouvelle liste
+     */
     public static <In, Out> List<Out> map(List<In> in, Func<In, Out> f) {
         List<Out> out = new ArrayList<Out>(in.size());
         for (In inObj : in) {
@@ -198,6 +228,14 @@ public class OTUtils extends Utils {
         return out;
     }
 
+    /**
+     * Convertit une latitude exprimée par un entier dans un quadrant en degré
+     * décimal.
+     *
+     * @param quandrant représente le quadrant
+     * @param latitude la latitude à convertir
+     * @return la latitude en degré décimal
+     */
     public static Double convertLatitude(int quandrant, int latitude) {
         double lat = degreesMinutesToDegreesDecimal(latitude);
         if (quandrant == 3 || quandrant == 2) {
@@ -206,6 +244,14 @@ public class OTUtils extends Utils {
         return lat;
     }
 
+    /**
+     * Convertit une longitude exprimée par un entier dans un quadrant en degré
+     * décimal.
+     *
+     * @param quandrant représente le quadrant
+     * @param longitude la longitude à convertir
+     * @return la longitude en degré décimal
+     */
     public static Double convertLongitude(int quandrant, int longitude) {
         double lon = degreesMinutesToDegreesDecimal(longitude);
         if (quandrant == 3 || quandrant == 4) {

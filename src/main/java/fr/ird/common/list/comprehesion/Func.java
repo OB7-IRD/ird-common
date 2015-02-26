@@ -19,10 +19,16 @@
 package fr.ird.common.list.comprehesion;
 
 /**
+ * Cette interface permet de implémenter la fonctionnalité «list comprehension»
+ * de Python. Classe issue d'une réponse de stackoverflow.
+ *
+ * @see
+ * <a href="http://stackoverflow.com/questions/899138/python-like-list-comprehension-in-java">Python-like
+ * list comprehension in Java</a>
  *
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
- * @param <In>
- * @param <Out>
+ * @param <In> le type du paramètre d'entrée
+ * @param <Out> le type du paramètre de sortie
  * @since 1.1
  * @date 27 mai 2014
  *

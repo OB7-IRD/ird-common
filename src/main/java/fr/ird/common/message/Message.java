@@ -24,6 +24,8 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
+ * Représente un message qui sera manipulé dont le contenu se trouve dans les
+ * fichiers d'internationalisation.
  *
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
  * @date 25 nov. 2013
@@ -154,6 +156,16 @@ public class Message {
 
         return formatter.format(this.getParams().toArray());
 
+    }
+
+    /**
+     * Displays the message with the parameters in the selected language.
+     *
+     * @param locale the message's language to display
+     * @return the String message
+     */
+    public String displayMessage(Locale locale) {
+        return this.displayMessage("Message", locale);
     }
 
 }

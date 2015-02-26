@@ -21,6 +21,7 @@ package fr.ird.common.message;
 import java.util.ArrayList;
 
 /**
+ * Représente un message de type Erreur.
  *
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
  * @since 1.1
