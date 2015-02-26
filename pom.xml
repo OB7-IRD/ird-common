@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
 
     <name>ird-common</name>
-    <url></url>
+     <inceptionYear>2013</inceptionYear>
     <organization>
         <name>Observatoire thonier, IRD</name>
         <url>http://www.ird.fr/</url>
@@ -61,6 +61,59 @@
     </dependencies>    
     <build>
         <plugins>            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.4</version>
+                <configuration>
+                    <reportPlugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-project-info-reports-plugin</artifactId>
+                            <version>2.8</version>
+                            <reportSets>
+                                <reportSet>
+                                    <reports></reports>
+                                </reportSet>
+                            </reportSets>
+                        </plugin>
+                        <plugin>
+                            <groupId>com.stratio.maven</groupId>
+                            <artifactId>sphinx-maven-plugin</artifactId>
+                            <version>2.0.0</version>
+                            <configuration>
+                                <fork>true</fork>
+                                <argLine>-Xmx256m -XX:MaxPermSize=128m</argLine>
+                                <builders>
+                                    <entry>html</entry>
+                                </builders>
+                                <resources>
+                                    <resource>
+                                        <directory>src/site/sphinx</directory>
+                                        <filtering>true</filtering>
+                                        <includes>
+                                            <include>conf.py</include>
+                                        </includes>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </plugin>
+                        <!--                        <plugin>
+                            <groupId>com.stratio.maven</groupId>
+                            <artifactId>sphinx-maven-plugin</artifactId>
+                            <version>2.0.0</version>
+                            <configuration>
+                                <fork>true</fork>
+                                <argLine>-Xmx256m -XX:MaxPermSize=128m</argLine>
+                                <builders>
+                                    <entry>pdf</entry>
+                                </builders>
+                                <outputDirectory>${project.reporting.outputDirectory}/pdf</outputDirectory>
+                            </configuration>
+                        </plugin>-->
+                    </reportPlugins>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
