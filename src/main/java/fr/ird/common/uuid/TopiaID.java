@@ -24,7 +24,7 @@ import java.util.UUID;
  * Utilitaire générant un identifiant unique se fondant sur une classe..
  *
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
- * @since 0.0
+ * @since 1.0
  * @date 13 janv. 2015
  *
  * $LastChangedDate$
@@ -42,7 +42,7 @@ public class TopiaID {
      */
     public static String create(Class clazz) {
         UUID uuid = UUID.randomUUID();
-        return uuid.toString() + '-' + System.currentTimeMillis();
+        return clazz.getName() + '-' + uuid.toString() + '-' + System.currentTimeMillis();
 
 //        if (!clazz.isInterface() && !Modifier.isAbstract(clazz.getModifiers())) {
 //            throw new IllegalArgumentException(
