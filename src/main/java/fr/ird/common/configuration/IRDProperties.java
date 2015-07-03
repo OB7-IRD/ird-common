@@ -44,6 +44,7 @@ public abstract class IRDProperties {
     protected static String PROJECT_NAME;
     protected static String PROJECT_CONFIG_FILENAME;
     protected static String PROJECT_CONFIG_COMMENT;
+    public static String PROJECT_CONFIG_ABSOLUTE_PATH;
 
     /**
      * Load all properties of an application.
@@ -106,7 +107,13 @@ public abstract class IRDProperties {
     /**
      * Create the default properties.
      */
-    public abstract void createDefaultDirectory();
+    public void createDefaultDirectory() {
+        PROJECT_CONFIG_ABSOLUTE_PATH = AppConfig.getConfigDirectory(AppConfig.getRelativeConfigPath(PROJECT_NAME));
+        boolean success = (new File(PROJECT_CONFIG_ABSOLUTE_PATH)).mkdirs();
+        if (success) {
+            System.out.println("Directory: " + PROJECT_CONFIG_ABSOLUTE_PATH + " created");
+        }
+    }
 
     /**
      * Create the default properties.
