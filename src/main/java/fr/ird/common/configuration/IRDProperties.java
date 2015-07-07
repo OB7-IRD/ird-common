@@ -98,6 +98,23 @@ public abstract class IRDProperties {
     }
 
     /**
+     * Save all properties in the configuration file.
+     * @param properties the properties to save
+     */
+    public void saveProperties(Properties properties) {
+        String filepath = AppConfig.getRelativeConfigPath(PROJECT_NAME);
+        String filename = PROJECT_CONFIG_FILENAME;
+        try {
+//                System.out.println("-------- " + AppConfig.getConfigFile(filepath, filename));
+            FileOutputStream fos = new FileOutputStream(AppConfig.getConfigFile(filepath, filename));
+            properties.storeToXML(fos, PROJECT_CONFIG_COMMENT);
+            fos.close();
+        } catch (IOException ex) {
+            Logger.getLogger(IRDProperties.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
      * Create the default properties.
      *
      * @return the property of IRD application
