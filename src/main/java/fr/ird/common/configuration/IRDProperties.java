@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: IRDProperties.java 437 2014-08-01 13:49:54Z lebranch $
  *
  * Copyright (C) 2014 Julien Lebranchu <julien.lebranchu@ird.fr>
  *
@@ -35,16 +35,15 @@ import java.util.logging.Logger;
  * @since 1.0
  * @date 13 févr. 2014
  *
- * $LastChangedDate$
+ * $LastChangedDate: 2014-08-01 15:49:54 +0200 (ven. 01 août 2014) $
  *
- * $LastChangedRevision$
+ * $LastChangedRevision: 437 $
  */
 public abstract class IRDProperties {
 
     protected static String PROJECT_NAME;
     protected static String PROJECT_CONFIG_FILENAME;
     protected static String PROJECT_CONFIG_COMMENT;
-    public static String PROJECT_CONFIG_ABSOLUTE_PATH;
 
     /**
      * Load all properties of an application.
@@ -98,23 +97,6 @@ public abstract class IRDProperties {
     }
 
     /**
-     * Save all properties in the configuration file.
-     * @param properties the properties to save
-     */
-    public void saveProperties(Properties properties) {
-        String filepath = AppConfig.getRelativeConfigPath(PROJECT_NAME);
-        String filename = PROJECT_CONFIG_FILENAME;
-        try {
-//                System.out.println("-------- " + AppConfig.getConfigFile(filepath, filename));
-            FileOutputStream fos = new FileOutputStream(AppConfig.getConfigFile(filepath, filename));
-            properties.storeToXML(fos, PROJECT_CONFIG_COMMENT);
-            fos.close();
-        } catch (IOException ex) {
-            Logger.getLogger(IRDProperties.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
      * Create the default properties.
      *
      * @return the property of IRD application
@@ -124,13 +106,7 @@ public abstract class IRDProperties {
     /**
      * Create the default properties.
      */
-    public void createDefaultDirectory() {
-        PROJECT_CONFIG_ABSOLUTE_PATH = AppConfig.getConfigDirectory(AppConfig.getRelativeConfigPath(PROJECT_NAME));
-        boolean success = (new File(PROJECT_CONFIG_ABSOLUTE_PATH)).mkdirs();
-        if (success) {
-            System.out.println("Directory: " + PROJECT_CONFIG_ABSOLUTE_PATH + " created");
-        }
-    }
+    public abstract void createDefaultDirectory();
 
     /**
      * Create the default properties.

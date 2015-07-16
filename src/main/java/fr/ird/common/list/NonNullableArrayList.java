@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: NonNullableArrayList.java 387 2014-07-11 12:22:33Z lebranch $
  *
  * Copyright (C) 2013 Julien Lebranchu <julien.lebranchu@ird.fr>
  *
@@ -30,9 +30,9 @@ import java.util.Collection;
  * @see Collection
  * @see ArrayList
  *
- * $LastChangedDate$
+ * $LastChangedDate: 2014-07-11 14:22:33 +0200 (ven. 11 juil. 2014) $
  *
- * $LastChangedRevision$
+ * $LastChangedRevision: 387 $
  */
 public class NonNullableArrayList<E> extends ArrayList<E> {
 

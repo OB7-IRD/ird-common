@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: AppConfig.java 437 2014-08-01 13:49:54Z lebranch $
  *
  * Copyright (C) 2013 Julien Lebranchu <julien.lebranchu@ird.fr>
  *
@@ -33,9 +33,9 @@ import java.io.OutputStream;
  * @since 0.1
  * @date 25 nov. 2013
  *
- * $LastChangedDate$
+ * $LastChangedDate: 2014-08-01 15:49:54 +0200 (ven. 01 août 2014) $
  *
- * $LastChangedRevision$
+ * $LastChangedRevision: 437 $
  */
 public class AppConfig {
 

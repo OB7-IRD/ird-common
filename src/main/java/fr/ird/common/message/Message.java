@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: Message.java 509 2015-02-26 10:39:32Z lebranch $
  *
  * Copyright (C) 2014 Observatoire thonier, IRD
  *
@@ -31,9 +31,9 @@ import java.util.ResourceBundle;
  * @date 25 nov. 2013
  * @since 1.1
  *
- * $LastChangedDate$
+ * $LastChangedDate: 2015-02-26 11:39:32 +0100 (jeu. 26 févr. 2015) $
  *
- * $LastChangedRevision$
+ * $LastChangedRevision: 509 $
  */
 public class Message {
 

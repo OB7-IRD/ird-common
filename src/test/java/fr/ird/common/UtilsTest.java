@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: UtilsTest.java 388 2014-07-11 12:24:57Z lebranch $
  *
  * Copyright (C) 2014 Julien Lebranchu <julien.lebranchu@ird.fr>
  *
@@ -27,9 +27,9 @@ import org.joda.time.DateTime;
  * @since 1.1
  * @date 19 juin 2014
  *
- * $LastChangedDate$
+ * $LastChangedDate: 2014-07-11 14:24:57 +0200 (ven. 11 juil. 2014) $
  *
- * $LastChangedRevision$
+ * $LastChangedRevision: 388 $
  */
 public class UtilsTest extends TestCase {
 
