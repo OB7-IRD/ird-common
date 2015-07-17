@@ -515,6 +515,24 @@ public class Utils {
         return new DateTime(date);
     }
 
+    /**
+     * Add the time to the date.
+     *
+     * @param date
+     * @param time
+     * @return a new date object with the time field filled
+     */
+    public static DateTime addTimeTo(DateTime date, String time) {
+        String[] timesArray = time.split(":");
+        int hour = Integer.valueOf(timesArray[0]);
+        int minute = Integer.valueOf(timesArray[1]);
+        int second = 0;
+        if (timesArray.length > 2) {
+            second = Integer.valueOf(timesArray[2]);
+        }
+        return new DateTime(date.getYear(), date.getMonthOfYear(), date.getDayOfMonth(), hour, minute, second);
+    }
+
     private static final Pattern pCfr = Pattern.compile("^(?<country>[A-Za-z]{3})(?<code>[0-9A-Za-z]{9})$");
 
     /**
