@@ -59,7 +59,7 @@ import org.joda.time.format.DateTimeFormatter;
  * $LastChangedRevision: 509 $
  */
 public class Utils {
-
+    
     public static void printMatrix(List<Map<String, Object>> results) {
         if (results == null || results.isEmpty()) {
             System.out.println("\n\n*******************************************");
@@ -98,7 +98,7 @@ public class Utils {
             }
             resultsArray2D[i] = array;
         }
-
+        
         printer.print(resultsArray2D);
     }
 
@@ -112,7 +112,7 @@ public class Utils {
         if (places < 0) {
             throw new IllegalArgumentException();
         }
-
+        
         BigDecimal bd = new BigDecimal(value);
         bd = bd.setScale(places, BigDecimal.ROUND_HALF_UP);
         return bd.doubleValue();
@@ -130,9 +130,9 @@ public class Utils {
             return false;
         }
         DateTime dtCourante = new DateTime(current);
-
+        
         DateTime dtReference = new DateTime(reference);
-
+        
         return dateEqual(dtCourante, dtReference);
     }
     public static DateTimeFormatter DATE_FORMATTER = DateTimeFormat.forPattern("dd/MM/yyyy").withZone(DateTimeZone.forTimeZone(TimeZone.getDefault()));
@@ -148,7 +148,7 @@ public class Utils {
         if (current == null || reference == null) {
             return false;
         }
-
+        
         return current.getYear() == reference.getYear()
                 && current.getMonthOfYear() == reference.getMonthOfYear()
                 && current.getDayOfMonth() == reference.getDayOfMonth();
@@ -167,9 +167,9 @@ public class Utils {
             return false;
         }
         DateTime cDay = new DateTime(current);
-
+        
         DateTime nDay = new DateTime(next);
-
+        
         return dateIsTheNextDay(cDay, nDay);
     }
 
@@ -185,9 +185,9 @@ public class Utils {
         if (current == null || next == null) {
             return false;
         }
-
+        
         return dateEqual(current, next.minusDays(1));
-
+        
     }
 
     /**
@@ -203,9 +203,9 @@ public class Utils {
             return false;
         }
         DateTime dateCourante = new DateTime(date);
-
+        
         DateTime dateReference = new DateTime(referenceDate);
-
+        
         return dateAfter(dateCourante, dateReference);
     }
 
@@ -221,7 +221,7 @@ public class Utils {
         if (referenceDate == null || referenceDate == null) {
             return false;
         }
-
+        
         return date.compareTo(referenceDate) > 0;
     }
 
@@ -402,7 +402,7 @@ public class Utils {
      */
     public static java.sql.Date convertFilteredDate(DateTime date) {
         return date == null ? null : convertFullDate(new DateTime(date.getYear(), date.getMonthOfYear(), date.getDayOfMonth(), 0, 0));
-
+        
     }
 
     /**
@@ -435,7 +435,7 @@ public class Utils {
             /* A file path: easy enough */
             return new File(dirURL.toURI()).list();
         }
-
+        
         if (dirURL == null) {
             /*
              * In case of a jar file, we can't actually find a directory.
@@ -444,7 +444,7 @@ public class Utils {
             String me = clazz.getName().replace(".", "/") + ".class";
             dirURL = clazz.getClassLoader().getResource(me);
         }
-
+        
         if (dirURL.getProtocol().equals("jar")) {
             /* A JAR path */
             String jarPath = dirURL.getPath().substring(5, dirURL.getPath().indexOf("!")); //strip out only the JAR file
@@ -465,10 +465,10 @@ public class Utils {
             }
             return result.toArray(new String[result.size()]);
         }
-
+        
         throw new UnsupportedOperationException("Cannot list files for URL " + dirURL);
     }
-
+    
     public static List<String> difference(Collection<String> l1, Collection<String> l2) {
         l1.removeAll(l2);
         return new ArrayList<String>(l1);
@@ -514,25 +514,41 @@ public class Utils {
         date.setMinutes(Integer.valueOf(timesArray[1]));
         return new DateTime(date);
     }
+    public static final Pattern pDateTime = Pattern.compile("^(?<date>[0-9]{4}-[0-9]{2}-[0-9]{2}) (?<time>[0-9]{2}:[0-9]{2}:.*)$");
+    public static final Pattern pTime = Pattern.compile("^(?<time>[0-9]{2}:[0-9]{2}:.*)$");
 
     /**
      * Add the time to the date.
      *
      * @param date
-     * @param time
+     * @param field
      * @return a new date object with the time field filled
      */
-    public static DateTime addTimeTo(DateTime date, String time) {
+    public static DateTime addTimeTo(DateTime date, String field) {
+        String time;
+        Matcher matcher = pDateTime.matcher(field);
+        if (matcher.matches()) {
+            time = matcher.group("time");
+        } else {
+            matcher = pTime.matcher(field);
+            if (matcher.matches()) {
+                time = matcher.group("time");
+            } else {
+                return null;
+            }
+        }
+        
         String[] timesArray = time.split(":");
         int hour = Integer.valueOf(timesArray[0]);
         int minute = Integer.valueOf(timesArray[1]);
         int second = 0;
         if (timesArray.length > 2) {
-            second = Integer.valueOf(timesArray[2]);
+            second = Math.round(Float.valueOf(timesArray[2]));
+            
         }
         return new DateTime(date.getYear(), date.getMonthOfYear(), date.getDayOfMonth(), hour, minute, second);
     }
-
+    
     private static final Pattern pCfr = Pattern.compile("^(?<country>[A-Za-z]{3})(?<code>[0-9A-Za-z]{9})$");
 
     /**
@@ -545,7 +561,7 @@ public class Utils {
         Matcher matcherCFR = pCfr.matcher(vesselCFR);
         return matcherCFR.matches();
     }
-
+    
     private static final Pattern pTripNumberLong = Pattern.compile("^(?<country>[A-Za-z]{3})(?<code>[0-9A-Za-z]{9})-(?<tn>[0-9]{8})$");
     private static final Pattern pTripNumberShort = Pattern.compile("^(?<tn>[0-9]{8})$");
 
@@ -561,12 +577,12 @@ public class Utils {
         Matcher matcherTripNumberShort = pTripNumberShort.matcher(tripNumber);
         return matcherTripNumberLong.matches() || matcherTripNumberShort.matches();
     }
-
+    
     public static boolean validFormatLongTripNumber(String tripNumber) {
         Matcher matcherTripNumberLong = pTripNumberLong.matcher(tripNumber);
         return matcherTripNumberLong.matches();
     }
-
+    
     public static String createLongTripNumber(String vesselCFR, String tripNumber) {
         Matcher matcherTripNumberLong = pTripNumberLong.matcher(tripNumber);
         if (matcherTripNumberLong.matches()) {
@@ -574,13 +590,25 @@ public class Utils {
         }
         return vesselCFR + "-" + tripNumber;
     }
-
+    
     public static String[] splitLongTripNumber(String longTripNumber) {
         Matcher matcherTripNumberLong = pTripNumberLong.matcher(longTripNumber);
         if (!matcherTripNumberLong.matches()) {
             return null;
         }
-
+        
         return longTripNumber.split("-");
+    }
+    
+    public static long convertHoursInMillis(int hour) {
+        return convertMinutesInMillis(hour * 60);
+    }
+
+    public static long convertMinutesInMillis(int minute) {
+        return convertSecondsInMillis(minute * 60);
+    }
+
+    public static long convertSecondsInMillis(int second) {
+        return second * 1000;
     }
 }

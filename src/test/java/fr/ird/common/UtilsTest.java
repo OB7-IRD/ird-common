@@ -18,6 +18,8 @@
  */
 package fr.ird.common;
 
+import static fr.ird.common.Utils.pDateTime;
+import java.util.regex.Matcher;
 import junit.framework.TestCase;
 import org.joda.time.DateTime;
 
@@ -57,6 +59,16 @@ public class UtilsTest extends TestCase {
 
     public void testRound() {
         assertEquals(38.5, Utils.round(38.499999, 2));
+    }
+
+    public void testDateTimeMatch() {
+
+        String field = "1899-12-30 15:57:00.0";
+        Matcher matcher = pDateTime.matcher(field);
+        assertTrue(matcher.matches());
+        assertEquals("1899-12-30", matcher.group("date"));
+        assertEquals("15:57:00.0", matcher.group("time"));
+
     }
 
 }
