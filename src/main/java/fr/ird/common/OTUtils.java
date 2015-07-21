@@ -233,15 +233,44 @@ public class OTUtils extends Utils {
      * décimal.
      *
      * @param quandrant représente le quadrant
+     * @param latitude la latitude à signer
+     * @return la latitude signé
+     */
+    public static int signLatitude(int quandrant, int latitude) {
+        if (quandrant == 3 || quandrant == 2) {
+            latitude = -1 * latitude;
+        }
+        return latitude;
+    }
+
+    /**
+     * Convertit une longitude exprimée par un entier dans un quadrant en degré
+     * décimal.
+     *
+     * @param quandrant représente le quadrant
+     * @param longitude la longitude à convertir
+     * @return la longitude en degré décimal
+     */
+    public static int signLongitude(int quandrant, int longitude) {
+        if (quandrant == 3 || quandrant == 4) {
+            longitude = -1 * longitude;
+        }
+        return longitude;
+    }
+
+    /**
+     * Convertit une latitude exprimée par un entier dans un quadrant en degré
+     * décimal.
+     *
+     * @param quandrant représente le quadrant
      * @param latitude la latitude à convertir
      * @return la latitude en degré décimal
      */
     public static Double convertLatitude(int quandrant, int latitude) {
-        double lat = degreesMinutesToDegreesDecimal(latitude);
         if (quandrant == 3 || quandrant == 2) {
-            return -1 * lat;
+            latitude = -1 * latitude;
         }
-        return lat;
+        return convertLatitude(latitude);
     }
 
     /**
@@ -253,10 +282,33 @@ public class OTUtils extends Utils {
      * @return la longitude en degré décimal
      */
     public static Double convertLongitude(int quandrant, int longitude) {
-        double lon = degreesMinutesToDegreesDecimal(longitude);
         if (quandrant == 3 || quandrant == 4) {
-            return -1 * lon;
+            longitude = -1 * longitude;
         }
-        return lon;
+        return convertLongitude(longitude);
+    }
+
+    /**
+     * Convertit une latitude exprimée par un entier signé en degré décimal.
+     *
+     *
+     * @param latitude la latitude à convertir
+     * @return la latitude en degré décimal
+     */
+    public static Double convertLatitude(int latitude) {
+        return degreesMinutesToDegreesDecimal(latitude);
+
+    }
+
+    /**
+     * Convertit une longitude exprimée par un entier signé en degré décimal.
+     *
+     *
+     * @param longitude la longitude à convertir
+     * @return la longitude en degré décimal
+     */
+    public static Double convertLongitude(int longitude) {
+        return degreesMinutesToDegreesDecimal(longitude);
+
     }
 }
