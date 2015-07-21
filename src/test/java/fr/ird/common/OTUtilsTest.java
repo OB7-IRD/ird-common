@@ -43,5 +43,6 @@ public class OTUtilsTest extends TestCase {
     public void testDegreesMinutesToDegreesDecimal() {
         assertEquals(38.5, round(OTUtils.degreesMinutesToDegreesDecimal(3830), 2));
         assertEquals(0.15, round(OTUtils.degreesMinutesToDegreesDecimal(9), 2));
+        assertEquals(-0.15, round(OTUtils.degreesMinutesToDegreesDecimal(-9), 2));
     }
 }
