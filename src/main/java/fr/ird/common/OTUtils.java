@@ -268,7 +268,7 @@ public class OTUtils extends Utils {
      */
     public static Double convertLatitude(int quandrant, int latitude) {
         if (quandrant == 3 || quandrant == 2) {
-            latitude = -1 * latitude;
+            latitude =  -1 * latitude;
         }
         return convertLatitude(latitude);
     }
