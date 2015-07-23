@@ -31,7 +31,6 @@ import java.util.Locale;
  * @version 1.1
  * @date 25 nov. 2013
  *
- *
  * $LastChangedDate: 2015-02-26 11:39:32 +0100 (jeu. 26 févr. 2015) $
  *
  * $LastChangedRevision: 509 $
@@ -89,6 +88,11 @@ public class Flux {
         this.identifier = identifier;
     }
 
+    /**
+     * Check if the flux has a warning message.
+     *
+     * @return true if the flux has a warning message
+     */
     public boolean hasWarningMessage() {
         for (Message m : messages) {
             if (m.getType().equals(Message.WARNING)) {
@@ -98,6 +102,11 @@ public class Flux {
         return false;
     }
 
+    /**
+     * Get the message list which have the property "warning".
+     *
+     * @return the list of warning messages
+     */
     public List<Message> getWarningMessages() {
         ArrayList<Message> tmp = new ArrayList<Message>();
         for (Message m : messages) {
@@ -108,6 +117,11 @@ public class Flux {
         return tmp;
     }
 
+    /**
+     * Check if the flux has an error message.
+     *
+     * @return true if the flux has an error message
+     */
     public boolean hasErrorMessage() {
         for (Message m : messages) {
             if (m.getType().equals(Message.ERROR)) {
@@ -117,6 +131,11 @@ public class Flux {
         return false;
     }
 
+    /**
+     * Get the message list which have the property "error".
+     *
+     * @return the list of error messages
+     */
     public List<Message> getErrorMessages() {
         ArrayList<Message> tmp = new ArrayList<Message>();
         for (Message m : messages) {
@@ -127,6 +146,11 @@ public class Flux {
         return tmp;
     }
 
+    /**
+     * Check if the flux has an info message.
+     *
+     * @return true if the flux has an info message
+     */
     public boolean hasInfoMessage() {
         for (Message m : messages) {
             if (m.getType().equals(Message.INFO)) {
@@ -136,6 +160,11 @@ public class Flux {
         return false;
     }
 
+    /**
+     * Get the message list which have the property "info".
+     *
+     * @return the list of info messages
+     */
     public List<Message> getInfoMessages() {
         ArrayList<Message> tmp = new ArrayList<Message>();
         for (Message m : messages) {
@@ -146,6 +175,13 @@ public class Flux {
         return tmp;
     }
 
+    /**
+     * Create a list of messages in the specified language.
+     *
+     * @param messages the messages to translate
+     * @param locale the language in which translate
+     * @return the message list
+     */
     public static List<String> generateMessage(List<Message> messages, Locale locale) {
         ArrayList<String> tmp = new ArrayList<String>();
         for (Message m : messages) {

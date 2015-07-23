@@ -24,6 +24,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Miscellaneous class utility methods for the purposes of OT. Un quadrant est
@@ -43,7 +45,7 @@ import java.util.Map;
  *
  * $LastChangedRevision: 509 $
  */
-public class OTUtils extends Utils {
+public class OTUtils {
 
     /**
      * Transforms some coordinates in <em>Degrees Decimal</em> to <em>Degrees
@@ -192,40 +194,76 @@ public class OTUtils extends Utils {
         }
         return compassRose;
     }
+    private static final Pattern pCfr = Pattern.compile("^(?<country>[A-Za-z]{3})(?<code>[0-9A-Za-z]{9})$");
 
     /**
-     * Applique une fonction sur une liste. Par exemple, il est possible de
-     * multiplier par deux toutes les valeurs d'une liste d'entier.
+     * Check if the vessel cfr matches with the pattern pCfr.
      *
-     * @see {@link fr.ird.common.list.comprehesion.Func}
-     * @param <T> le type genérique de la fonction
-     * @param list la liste à traiter
-     * @param f la fonction à appliquer
+     * @param vesselCFR the vessel CFR to validate
+     * @return true if the cfr matches with the format
      */
-    public static <T> void applyToListInPlace(List<T> list, Func<T, T> f) {
-        ListIterator<T> itr = list.listIterator();
-        while (itr.hasNext()) {
-            T output = f.apply(itr.next());
-            itr.set(output);
-        }
+    public static boolean validFormatCFR(String vesselCFR) {
+        Matcher matcherCFR = pCfr.matcher(vesselCFR);
+        return matcherCFR.matches();
+    }
+
+    private static final Pattern pTripNumberLong = Pattern.compile("^(?<country>[A-Za-z]{3})(?<code>[0-9A-Za-z]{9})-(?<tn>[0-9]{8})$");
+    private static final Pattern pTripNumberShort = Pattern.compile("^(?<tn>[0-9]{8})$");
+
+    /**
+     * Check if the trip number matches with the pattern
+     * <em>pTripNumberLong</em> or <em>pTripNumberShort</em>.
+     *
+     * @param tripNumber the trip number to validate
+     * @return true if the trip number matches with the long or short format
+     */
+    public static boolean validFormatTripNumber(String tripNumber) {
+        Matcher matcherTripNumberLong = pTripNumberLong.matcher(tripNumber);
+        Matcher matcherTripNumberShort = pTripNumberShort.matcher(tripNumber);
+        return matcherTripNumberLong.matches() || matcherTripNumberShort.matches();
     }
 
     /**
-     * Creating a mapping from the input list to the output list.
+     * Check if the trip number matches with the pattern
+     * <em>pTripNumberLong</em>.
      *
-     * @see {@link fr.ird.common.list.comprehesion.Func}
-     * @param <In> le type du paramètre d'entrée
-     * @param <Out> le type du paramètre de sortie
-     * @param in la liste d'entrée
-     * @param f la fonction à appliquer
-     * @return la nouvelle liste
+     * @param tripNumber the trip number to validate
+     * @return true if the trip number matches with the long format
      */
-    public static <In, Out> List<Out> map(List<In> in, Func<In, Out> f) {
-        List<Out> out = new ArrayList<Out>(in.size());
-        for (In inObj : in) {
-            out.add(f.apply(inObj));
+    public static boolean validFormatLongTripNumber(String tripNumber) {
+        Matcher matcherTripNumberLong = pTripNumberLong.matcher(tripNumber);
+        return matcherTripNumberLong.matches();
+    }
+
+    /**
+     * Create a long trip number if the trip number matches with a short format.
+     *
+     * @param vesselCFR the vessel CFR id
+     * @param tripNumber the trip number
+     * @return a long trip number
+     */
+    public static String createLongTripNumber(String vesselCFR, String tripNumber) {
+        Matcher matcherTripNumberLong = pTripNumberLong.matcher(tripNumber);
+        if (matcherTripNumberLong.matches()) {
+            return tripNumber;
         }
-        return out;
+        return vesselCFR + "-" + tripNumber;
+    }
+
+    /**
+     * Split a long trip number to separate the vessel CFR id and the short trip
+     * number.
+     *
+     * @param longTripNumber the trip number in the long format
+     * @return an array containing the vessel CFR id and the short trip number.
+     */
+    public static String[] splitLongTripNumber(String longTripNumber) {
+        Matcher matcherTripNumberLong = pTripNumberLong.matcher(longTripNumber);
+        if (!matcherTripNumberLong.matches()) {
+            return null;
+        }
+
+        return longTripNumber.split("-");
     }
 
     /**
@@ -268,7 +306,7 @@ public class OTUtils extends Utils {
      */
     public static Double convertLatitude(int quandrant, int latitude) {
         if (quandrant == 3 || quandrant == 2) {
-            latitude =  -1 * latitude;
+            latitude = -1 * latitude;
         }
         return convertLatitude(latitude);
     }

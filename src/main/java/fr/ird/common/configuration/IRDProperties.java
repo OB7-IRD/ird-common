@@ -1,6 +1,5 @@
 /*
- * $Id$
- *
+ * 
  * Copyright (C) 2014 Julien Lebranchu <julien.lebranchu@ird.fr>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -34,10 +33,7 @@ import java.util.logging.Logger;
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
  * @since 1.0
  * @date 13 févr. 2014
- *
- * $LastChangedDate$
- *
- * $LastChangedRevision$
+ * 
  */
 public abstract class IRDProperties {
 
@@ -60,7 +56,6 @@ public abstract class IRDProperties {
         }
 
         Properties prop = new Properties();
-
         String filepath = AppConfig.getRelativeConfigPath(PROJECT_NAME);
         String filename = PROJECT_CONFIG_FILENAME;
         FileInputStream fis = new FileInputStream(AppConfig.getConfigFile(filepath, filename));
@@ -86,7 +81,6 @@ public abstract class IRDProperties {
             copyDefaultFile();
 
             try {
-//                System.out.println("-------- " + AppConfig.getConfigFile(filepath, filename));
                 FileOutputStream fos = new FileOutputStream(AppConfig.getConfigFile(filepath, filename));
                 createDefaultProperties().storeToXML(fos, PROJECT_CONFIG_COMMENT);
                 fos.close();
@@ -99,13 +93,13 @@ public abstract class IRDProperties {
 
     /**
      * Save all properties in the configuration file.
+     *
      * @param properties the properties to save
      */
     public void saveProperties(Properties properties) {
         String filepath = AppConfig.getRelativeConfigPath(PROJECT_NAME);
         String filename = PROJECT_CONFIG_FILENAME;
         try {
-//                System.out.println("-------- " + AppConfig.getConfigFile(filepath, filename));
             FileOutputStream fos = new FileOutputStream(AppConfig.getConfigFile(filepath, filename));
             properties.storeToXML(fos, PROJECT_CONFIG_COMMENT);
             fos.close();

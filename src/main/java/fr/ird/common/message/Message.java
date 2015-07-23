@@ -145,13 +145,10 @@ public class Message {
      * @return the String message
      */
     public String displayMessage(String baseName, Locale locale) {
-//        System.out.println("MessageService locale: " + locale);
         ResourceBundle messages
                 = ResourceBundle.getBundle(baseName, locale);
-//        System.out.println("ResourceBundle locale: "+messages.getLocale());
         MessageFormat formatter = new MessageFormat("");
         formatter.setLocale(locale);
-//        System.out.println("MessageFormat locale: "+formatter.getLocale());
         formatter.applyPattern(messages.getString(this.getLabel()));
 
         return formatter.format(this.getParams().toArray());

@@ -33,10 +33,26 @@ import java.util.ArrayList;
  */
 public class ErrorMessage extends Message {
 
+    /**
+     * Initializes a newly created ErrorMessage object so that it represents an
+     * message with a specific code and many parameters.
+     *
+     * @param code the code of the message
+     * @param label the key of the locale properties
+     * @param params parameters to be applied to the message
+     *
+     */
     public ErrorMessage(String code, String label, ArrayList<Object> params) {
         super(code, label, params, ERROR);
     }
 
+    /**
+     * Initializes a newly created ErrorMessage object so that it represents an
+     * message with a specific code.
+     *
+     * @param code the code of the message
+     * @param label the key of the locale properties
+     */
     public ErrorMessage(String code, String label) {
         super(code, label, ERROR);
     }

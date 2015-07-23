@@ -33,6 +33,14 @@ import java.util.ArrayList;
  */
 public class WarningMessage extends Message {
 
+    /**
+     * Initializes a newly created WarningMessage object so that it represents an
+     * message with a specific code and many parameters.
+     *
+     * @param code the code of the message
+     * @param label the key of the locale properties
+     * @param params parameters to be applied to the message
+     */
     public WarningMessage(String code, String label, ArrayList<Object> params) {
         super(code, label, params, WARNING);
     }

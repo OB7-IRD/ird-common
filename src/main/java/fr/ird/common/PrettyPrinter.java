@@ -20,6 +20,8 @@ package fr.ird.common;
 
 import java.io.PrintStream;
 import static java.lang.String.format;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Classe permettant de générer un tableau formater dans une console.
@@ -33,6 +35,48 @@ import static java.lang.String.format;
  * $LastChangedRevision: 509 $
  */
 public final class PrettyPrinter {
+
+    public static void printMatrix(List<Map<String, Object>> results) {
+        if (results == null || results.isEmpty()) {
+            System.out.println("\n\n*******************************************");
+            System.out.println("\t\tNo result");
+            System.out.println("*******************************************\n\n");
+            return;
+        }
+        final PrettyPrinter printer = new PrettyPrinter(System.out);
+        String[][] resultsArray2D = null;
+        String[] array = null;
+        int i = 0;
+        int pos = 0;
+        for (Map<String, Object> result : results) {
+            if (i == 0) {//Rempli le tableau avec les entetes
+                resultsArray2D = new String[results.size() + 1][result.entrySet().size() + 1];
+                pos = 0;
+                array = new String[result.entrySet().size() + 1];
+                array[pos] = "Nb";
+                for (Map.Entry<String, Object> entry : result.entrySet()) {
+                    pos += 1;
+                    array[pos] = entry.getKey();
+                }
+                resultsArray2D[i] = array;
+            }
+            i += 1;
+            pos = 0;
+            array = new String[result.entrySet().size() + 1];
+            array[pos] = "" + i;
+            for (Map.Entry<String, Object> entry : result.entrySet()) {
+                pos += 1;
+                if (entry.getValue() != null) {
+                    array[pos] = entry.getValue().toString();
+                } else {
+                    array[pos] = "";
+                }
+            }
+            resultsArray2D[i] = array;
+        }
+
+        printer.print(resultsArray2D);
+    }
 
     private static final char BORDER_KNOT = '+';
     private static final char HORIZONTAL_BORDER = '-';

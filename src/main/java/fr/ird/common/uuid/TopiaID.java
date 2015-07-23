@@ -35,7 +35,7 @@ import java.util.UUID;
 public class TopiaID {
 
     /**
-     * Créé un topiaId pour une certaine classe.
+     * Créé un topiaId pour une classe donnée.
      *
      * @param clazz la classe de base
      * @return a generated topiaId
@@ -43,16 +43,5 @@ public class TopiaID {
     public static String create(Class clazz) {
         UUID uuid = UUID.randomUUID();
         return clazz.getName() + '-' + uuid.toString() + '-' + System.currentTimeMillis();
-
-//        if (!clazz.isInterface() && !Modifier.isAbstract(clazz.getModifiers())) {
-//            throw new IllegalArgumentException(
-//                    "Only interface and asbstract class is permit to create id: " + clazz);
-//        }
-//        double random = Math.random();
-//        while (Double.toString(random).contains("E-")) {
-//            random = Math.random();
-//        }
-//        return clazz.getName() + '#' + System.currentTimeMillis() + '#'
-//                + random;
     }
 }

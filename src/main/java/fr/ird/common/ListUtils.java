@@ -18,8 +18,11 @@
  */
 package fr.ird.common;
 
+import fr.ird.common.list.comprehesion.Func;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Classe utilitaire permettant la manipulation de liste.
@@ -53,4 +56,53 @@ public class ListUtils {
         }
         return list;
     }
+
+    /**
+     * Applique une fonction sur une liste. Par exemple, il est possible de
+     * multiplier par deux toutes les valeurs d'une liste d'entier.
+     *
+     * @see {@link fr.ird.common.list.comprehesion.Func}
+     * @param <T> le type genérique de la fonction
+     * @param list la liste à traiter
+     * @param f la fonction à appliquer
+     */
+    public static <T> void applyToListInPlace(List<T> list, Func<T, T> f) {
+        ListIterator<T> itr = list.listIterator();
+        while (itr.hasNext()) {
+            T output = f.apply(itr.next());
+            itr.set(output);
+        }
+    }
+
+    /**
+     * Creating a mapping from the input list to the output list.
+     *
+     * @return la nouvelle liste
+     * @see {@link fr.ird.common.list.comprehesion.Func}
+     * @param <In> le type du paramètre d'entrée
+     * @param <Out> le type du paramètre de sortie
+     * @param in la liste d'entrée
+     * @param f la fonction à appliquer
+     *
+     */
+    public static <In, Out> List<Out> map(List<In> in, Func<In, Out> f) {
+        List<Out> out = new ArrayList<Out>(in.size());
+        for (In inObj : in) {
+            out.add(f.apply(inObj));
+        }
+        return out;
+    }
+
+    /**
+     * Remove all elements in the first collection which are in the second.
+     *
+     * @param l1 the first collection
+     * @param l2 the second collection
+     * @return the list
+     */
+    public static List<String> difference(Collection<String> l1, Collection<String> l2) {
+        l1.removeAll(l2);
+        return new ArrayList<String>(l1);
+    }
+
 }
