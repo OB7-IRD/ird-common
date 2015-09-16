@@ -34,7 +34,7 @@ import org.apache.log4j.Logger;
 public class LogService {
 
     private static final LogService service = new LogService();
-    private final static Logger logger = Logger.getLogger(LogService.class);
+    private static Logger logger = Logger.getLogger(LogService.class);
 
     /**
      * Constructeur privé car LogService est un singleton.
@@ -64,8 +64,19 @@ public class LogService {
      * @return LogService le service
      */
     public static LogService getService() {
+        logger = Logger.getLogger(LogService.class);
         return service;
     }
+    
+/**
+     * *
+     * @param classz
+     * @return LogService le service
+     */
+    public static LogService getService(Class classz) {
+        logger = Logger.getLogger(classz);
+        return service;
+    }    
 
     /**
      * Log d'erreur applicatif.
