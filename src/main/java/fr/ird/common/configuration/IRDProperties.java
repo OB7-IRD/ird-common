@@ -17,14 +17,13 @@
  */
 package fr.ird.common.configuration;
 
+import fr.ird.common.log.LogService;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * The <em>IRDProperties</em> class represents a persistent set of properties.
@@ -76,7 +75,7 @@ public abstract class IRDProperties {
         String filepath = AppConfig.getRelativeConfigPath(PROJECT_NAME);
         String filename = PROJECT_CONFIG_FILENAME;
         if (!configFileExist()) {
-            System.out.println("Create the default configuration file");
+            LogService.getService(IRDProperties.class).logApplicationInfo("Create the default configuration file");
             createDefaultDirectory();
             copyDefaultFile();
 
@@ -85,7 +84,7 @@ public abstract class IRDProperties {
                 createDefaultProperties().storeToXML(fos, PROJECT_CONFIG_COMMENT);
                 fos.close();
             } catch (IOException ex) {
-                Logger.getLogger(IRDProperties.class.getName()).log(Level.SEVERE, null, ex);
+                LogService.getService(IRDProperties.class).logApplicationError(ex.getMessage());
             }
 
         }
@@ -104,7 +103,7 @@ public abstract class IRDProperties {
             properties.storeToXML(fos, PROJECT_CONFIG_COMMENT);
             fos.close();
         } catch (IOException ex) {
-            Logger.getLogger(IRDProperties.class.getName()).log(Level.SEVERE, null, ex);
+            LogService.getService(IRDProperties.class).logApplicationError(ex.getMessage());
         }
     }
 
@@ -122,7 +121,7 @@ public abstract class IRDProperties {
         PROJECT_CONFIG_ABSOLUTE_PATH = AppConfig.getConfigDirectory(AppConfig.getRelativeConfigPath(PROJECT_NAME));
         boolean success = (new File(PROJECT_CONFIG_ABSOLUTE_PATH)).mkdirs();
         if (success) {
-            System.out.println("Directory: " + PROJECT_CONFIG_ABSOLUTE_PATH + " created");
+            LogService.getService(IRDProperties.class).logApplicationInfo("Directory: " + PROJECT_CONFIG_ABSOLUTE_PATH + " created");
         }
     }
 
