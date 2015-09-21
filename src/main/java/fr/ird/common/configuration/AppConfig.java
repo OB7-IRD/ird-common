@@ -217,6 +217,8 @@ public class AppConfig {
         return fullpath;
     }
 
+    private static String LINUX_CONFIG_FILE = ".config";
+
     /**
      * Returns a String containing the relative path according the project name.
      *
@@ -224,7 +226,12 @@ public class AppConfig {
      * @return the relative path
      */
     public static String getRelativeConfigPath(String projectName) {
-        return "appconfig" + File.separator + projectName;
+        String appconfig = "appconfig";
+        String os = System.getProperty("os.name");
+        if (os.contains("Linux")) {
+            appconfig = LINUX_CONFIG_FILE;
+        }
+        return appconfig + File.separator + projectName;
     }
 
 }
