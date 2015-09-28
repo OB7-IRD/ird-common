@@ -1,5 +1,5 @@
 /*
- * $Id: ListUtils.java 589 2015-05-04 15:37:35Z lebranch $
+ * 
  *
  * Copyright (C) 2015 Observatoire thonier, IRD
  *
@@ -31,9 +31,9 @@ import java.util.ListIterator;
  * @since 1.0
  * @date 18 févr. 2015
  *
- * $LastChangedDate: 2015-05-04 17:37:35 +0200 (lun., 04 mai 2015) $
  *
- * $LastChangedRevision: 589 $
+ *
+ *
  *
  */
 public class ListUtils {

@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
 
     <name>ird-common</name>
-     <inceptionYear>2013</inceptionYear>
+    <inceptionYear>2013</inceptionYear>
     <organization>
         <name>Observatoire thonier, IRD</name>
         <url>http://www.ird.fr/</url>

@@ -1,5 +1,5 @@
 /*
- * $Id: WarningMessage.java 509 2015-02-26 10:39:32Z lebranch $
+ * 
  *
  * Copyright (C) 2014 Observatoire thonier, IRD
  *
@@ -27,15 +27,15 @@ import java.util.ArrayList;
  * @since 1.1
  * @date 23 mai 2014
  *
- * $LastChangedDate: 2015-02-26 11:39:32 +0100 (jeu. 26 févr. 2015) $
  *
- * $LastChangedRevision: 509 $
+ *
+ *
  */
 public class WarningMessage extends Message {
 
     /**
-     * Initializes a newly created WarningMessage object so that it represents an
-     * message with a specific code and many parameters.
+     * Initializes a newly created WarningMessage object so that it represents
+     * an message with a specific code and many parameters.
      *
      * @param code the code of the message
      * @param label the key of the locale properties

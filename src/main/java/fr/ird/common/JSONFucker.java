@@ -36,9 +36,9 @@ import org.json.JSONObject;
  * @since 1.1
  * @date 26 mars 2015
  *
- * $LastChangedDate$
  *
- * $LastChangedRevision$
+ *
+ *
  *
  */
 public class JSONFucker {

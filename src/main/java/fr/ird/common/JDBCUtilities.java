@@ -10,9 +10,9 @@ import java.sql.SQLException;
  * @date 27 sept. 2013
  *
  *
- * $LastChangedDate: 2015-02-26 11:39:32 +0100 (jeu. 26 févr. 2015) $
  *
- * $LastChangedRevision: 509 $
+ *
+ *
  */
 public class JDBCUtilities {
 

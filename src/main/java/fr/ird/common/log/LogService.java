@@ -1,5 +1,5 @@
 /*
- * $Id: LogService.java 509 2015-02-26 10:39:32Z lebranch $
+ * 
  *
  * Copyright (C) 2013 Observatoire thonier, IRD
  *
@@ -27,9 +27,9 @@ import org.apache.log4j.Logger;
  * @since 0.9
  *
  *
- * $LastChangedDate: 2015-02-26 11:39:32 +0100 (jeu. 26 févr. 2015) $
  *
- * $LastChangedRevision: 509 $
+ *
+ *
  */
 public class LogService {
 
@@ -67,8 +67,8 @@ public class LogService {
         logger = Logger.getLogger(LogService.class);
         return service;
     }
-    
-/**
+
+    /**
      * *
      * @param classz
      * @return LogService le service
@@ -76,7 +76,7 @@ public class LogService {
     public static LogService getService(Class classz) {
         logger = Logger.getLogger(classz);
         return service;
-    }    
+    }
 
     /**
      * Log d'erreur applicatif.

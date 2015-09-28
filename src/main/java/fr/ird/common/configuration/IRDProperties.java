@@ -32,7 +32,7 @@ import java.util.Properties;
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
  * @since 1.0
  * @date 13 févr. 2014
- * 
+ *
  */
 public abstract class IRDProperties {
 
