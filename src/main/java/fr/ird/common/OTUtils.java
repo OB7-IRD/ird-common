@@ -127,7 +127,7 @@ public class OTUtils {
     public static final Double EAST_DEGRE = 90.0;
     public static final Double EAST_BY_SOUTH_DEGRE = 101.25;
     public static final Double EAST_SOUTHEAST_DEGRE = 112.5;
-    public static final Double SOUTHEAST_BY_EAST_DEGRE = 123.75;
+    public static final Double SOUTHEAST_BY_EAST_DEGRE = 123.75; 
     public static final Double SOUTHEAST_DEGRE = 135.0;
     public static final Double SOUTHEAST_BY_SOUTH_DEGRE = 146.25;
     public static final Double SOUTH_SOUTHEAST_DEGRE = 157.5;

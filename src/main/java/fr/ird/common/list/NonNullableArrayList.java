@@ -1,6 +1,4 @@
 /*
- * 
- *
  * Copyright (C) 2013 Julien Lebranchu <julien.lebranchu@ird.fr>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -30,9 +28,6 @@ import java.util.Collection;
  * @date 9 déc. 2013
  * @see Collection
  * @see ArrayList
- *
- *
- *
  *
  */
 public class NonNullableArrayList<E> extends ArrayList<E> {

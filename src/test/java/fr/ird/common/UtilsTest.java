@@ -1,6 +1,4 @@
 /*
- * 
- *
  * Copyright (C) 2014 Julien Lebranchu <julien.lebranchu@ird.fr>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -26,9 +24,6 @@ import junit.framework.TestCase;
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
  * @since 1.1
  * @date 19 juin 2014
- *
- *
- *
  *
  */
 public class UtilsTest extends TestCase {

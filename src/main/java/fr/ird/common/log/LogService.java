@@ -1,6 +1,4 @@
 /*
- * 
- *
  * Copyright (C) 2013 Observatoire thonier, IRD
  *
  * This program is free software: you can redistribute it and/or modify
@@ -25,10 +23,6 @@ import org.apache.log4j.Logger;
  *
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
  * @since 0.9
- *
- *
- *
- *
  *
  */
 public class LogService {

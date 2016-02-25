@@ -1,6 +1,4 @@
 /*
- * 
- *
  * Copyright (C) 2014 Julien Lebranchu <julien.lebranchu@ird.fr>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -31,9 +29,6 @@ package fr.ird.common.list.comprehesion;
  * @param <Out> le type du paramètre de sortie
  * @since 1.1
  * @date 27 mai 2014
- *
- *
- *
  *
  */
 public interface Func<In, Out> {

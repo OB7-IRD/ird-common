@@ -18,8 +18,10 @@
  */
 package fr.ird.common.message;
 
+import fr.ird.common.log.LogService;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
