@@ -36,9 +36,22 @@ import java.util.Properties;
  */
 public abstract class IRDProperties {
 
+    /**
+     * The name of the project.
+     */
     protected static String PROJECT_NAME;
+    /**
+     *
+     */
     protected static String PROJECT_CONFIG_FILENAME;
+    /**
+     * A description of the project.
+     */
     protected static String PROJECT_CONFIG_COMMENT;
+    /**
+     * The absolute path of the project. This properties is filled via the {@link #createDefaultDirectory()
+     * } method.
+     */
     public static String PROJECT_CONFIG_ABSOLUTE_PATH;
 
     /**

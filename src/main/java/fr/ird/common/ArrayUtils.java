@@ -1,6 +1,4 @@
 /*
- * 
- *
  * Copyright (C) 2015 Observatoire thonier, IRD
  *
  * This program is free software: you can redistribute it and/or modify
@@ -26,10 +24,6 @@ import java.lang.reflect.Array;
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
  * @since 1.0
  * @date 18 févr. 2015
- *
- *
- *
- *
  *
  */
 public class ArrayUtils {

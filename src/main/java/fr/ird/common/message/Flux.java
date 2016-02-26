@@ -1,6 +1,4 @@
 /*
- * 
- *
  * Copyright (C) 2013 Observatoire thonier, IRD
  *
  * This program is free software: you can redistribute it and/or modify
@@ -30,9 +28,6 @@ import java.util.Locale;
  * @since 1.1
  * @version 1.1
  * @date 25 nov. 2013
- *
- *
- *
  *
  */
 public class Flux {

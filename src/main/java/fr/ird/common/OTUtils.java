@@ -1,6 +1,4 @@
 /*
- * 
- *
  * Copyright (C) 2013 Julien Lebranchu <julien.lebranchu@ird.fr>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,11 +16,7 @@
  */
 package fr.ird.common;
 
-import fr.ird.common.list.comprehesion.Func;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,10 +34,6 @@ import java.util.regex.Pattern;
  * @version 1.0
  * @since 1.0
  * @date 14 févr. 2014
- *
- *
- *
- *
  */
 public class OTUtils {
 
@@ -127,7 +117,7 @@ public class OTUtils {
     public static final Double EAST_DEGRE = 90.0;
     public static final Double EAST_BY_SOUTH_DEGRE = 101.25;
     public static final Double EAST_SOUTHEAST_DEGRE = 112.5;
-    public static final Double SOUTHEAST_BY_EAST_DEGRE = 123.75; 
+    public static final Double SOUTHEAST_BY_EAST_DEGRE = 123.75;
     public static final Double SOUTHEAST_DEGRE = 135.0;
     public static final Double SOUTHEAST_BY_SOUTH_DEGRE = 146.25;
     public static final Double SOUTH_SOUTHEAST_DEGRE = 157.5;
@@ -194,7 +184,10 @@ public class OTUtils {
         }
         return compassRose;
     }
-    private static final Pattern pCfr = Pattern.compile("^(?<country>[A-Za-z]{3})(?<code>[0-9A-Za-z]{9})$");
+    /**
+     * Rexegp to match a code CFR: FRA123456789
+     */
+    private static final Pattern CFR_PATTERN = Pattern.compile("^(?<country>[A-Za-z]{3})(?<code>[0-9A-Za-z]{9})$");
 
     /**
      * Check if the vessel cfr matches with the pattern pCfr.
@@ -203,7 +196,7 @@ public class OTUtils {
      * @return true if the cfr matches with the format
      */
     public static boolean validFormatCFR(String vesselCFR) {
-        Matcher matcherCFR = pCfr.matcher(vesselCFR);
+        Matcher matcherCFR = CFR_PATTERN.matcher(vesselCFR);
         return matcherCFR.matches();
     }
 

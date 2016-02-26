@@ -8,11 +8,6 @@ import java.sql.SQLException;
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
  * @version 1.0
  * @date 27 sept. 2013
- *
- *
- *
- *
- *
  */
 public class JDBCUtilities {
 

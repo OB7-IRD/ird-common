@@ -25,6 +25,7 @@ import static junit.framework.TestCase.assertTrue;
 import org.joda.time.DateTime;
 
 /**
+ * Test certaines methods de la classe {@link fr.ird.common.DateTimeUtils}.
  *
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
  */

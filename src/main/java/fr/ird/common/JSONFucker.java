@@ -1,27 +1,10 @@
-/*
- * Copyright (C) 2015 Observatoire thonier, IRD
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package fr.ird.common;
 
+import fr.ird.common.log.LogService;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,17 +19,13 @@ import org.json.JSONObject;
  * @since 1.1
  * @date 26 mars 2015
  *
- *
- *
- *
- *
  */
 public class JSONFucker {
     // HashMap > Map
     // ArrayList > List
 
     /**
-     *
+     * Convert an object to a JSON object or JSON array.
      *
      * @param object l'objet à convertir
      * @return le JSON ou l'objet d'entrée
@@ -71,16 +50,28 @@ public class JSONFucker {
         }
     }
 
+    /**
+     * Convert a MAP to a JSON object
+     *
+     * @param object l'objet à convertir
+     * @return le JSON
+     */
     public static JSONObject toJSON(Map object) {
         JSONObject o = null;
         try {
             o = (JSONObject) toJSON((Object) object);
         } catch (JSONException ex) {
-            Logger.getLogger(JSONFucker.class.getName()).log(Level.SEVERE, null, ex);
+            LogService.getService(JSONFucker.class).logApplicationError(ex.getLocalizedMessage());
         }
         return o;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @param object
+     * @return the string or null if the object is null
+     */
     public static String stringify(JSONObject object) {
         if (object == null) {
             return null;
@@ -88,6 +79,12 @@ public class JSONFucker {
         return object.toString();
     }
 
+    /**
+     * Test if the object is empty.
+     *
+     * @param object to test
+     * @return true if the object is empty
+     */
     public static boolean isEmptyObject(JSONObject object) {
         return object.names() == null;
     }
@@ -110,6 +107,13 @@ public class JSONFucker {
         return map;
     }
 
+    /**
+     * Convert a JSON array to a {@link List}.
+     *
+     * @param array to convert
+     * @return the list
+     * @throws JSONException
+     */
     public static ArrayList toList(JSONArray array) throws JSONException {
         ArrayList list = new ArrayList();
         for (int i = 0; i < array.length(); i++) {
@@ -118,6 +122,13 @@ public class JSONFucker {
         return list;
     }
 
+    /**
+     * Convert a JSON object to a {@link Map} or a {@link List}.
+     *
+     * @param json to convert
+     * @return the object converted or the object passed in parameter
+     * @throws JSONException
+     */
     private static Object fromJson(Object json) throws JSONException {
         if (json == JSONObject.NULL) {
             return null;

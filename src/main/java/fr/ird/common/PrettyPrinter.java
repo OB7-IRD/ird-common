@@ -1,6 +1,4 @@
 /*
- * 
- *
  * Copyright (C) 2013 Julien Lebranchu <julien.lebranchu@ird.fr>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,10 +27,6 @@ import java.util.Map;
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
  * @date 22 oct. 2013
  * @since 1.0
- *
- *
- *
- *
  */
 public final class PrettyPrinter {
 

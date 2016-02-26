@@ -1,6 +1,4 @@
 /*
- * 
- *
  * Copyright (C) 2014 Observatoire thonier, IRD
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,10 +16,8 @@
  */
 package fr.ird.common.message;
 
-import fr.ird.common.log.LogService;
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -32,10 +28,6 @@ import java.util.ResourceBundle;
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
  * @date 25 nov. 2013
  * @since 1.1
- *
- *
- *
- *
  */
 public class Message {
 

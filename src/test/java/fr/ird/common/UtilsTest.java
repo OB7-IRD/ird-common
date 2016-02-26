@@ -20,6 +20,7 @@ import static fr.ird.common.Utils.round;
 import junit.framework.TestCase;
 
 /**
+ * Test certaines methods de la classe {@link fr.ird.common.Utils}.
  *
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
  * @since 1.1

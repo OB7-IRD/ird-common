@@ -1,6 +1,4 @@
 /*
- * 
- *
  * Copyright (C) 2013 Julien Lebranchu <julien.lebranchu@ird.fr>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -36,10 +34,6 @@ import java.util.jar.JarFile;
  * @author Julien Lebranchu <julien.lebranchu@ird.fr>
  * @since 1.0
  * @date 13 déc. 2013
- *
- *
- *
- *
  */
 public class Utils {
 
