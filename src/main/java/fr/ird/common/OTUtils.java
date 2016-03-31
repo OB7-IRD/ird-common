@@ -52,6 +52,32 @@ public class OTUtils {
     }
 
     /**
+     * Transforms some coordinates in <em>Degrees Decimal</em> to <em>Degrees
+     * Minutes</em>.
+     *
+     * @param coord the longitude or latitute in degrees decimal
+     * @return String the value in degrees minutes
+     */
+    public static String degreesDecimalToStringDegreesMinutes(final Double coord, final boolean isLatitude) {
+        final Double nCoord = Math.abs(coord);
+        String deg = "" + (int) Math.floor(nCoord);
+        String min = "" + Math.round((nCoord * 60) % 60);
+        String orientation = "?";
+        if (isLatitude) {
+            if (coord < 0) {
+                orientation = "S";
+            } else {
+                orientation = "N";
+            }
+        } else if (coord > 0) {
+            orientation = "E";
+        } else {
+            orientation = "W";
+        }
+        return String.format("%s°%s'%s", deg, min, orientation);
+    }
+
+    /**
      * Transforms some coordinates in <em>Degrees Minutes</em> to <em>Degrees
      * Decimal</em>.
      *
