@@ -29,6 +29,15 @@ import junit.framework.TestCase;
  */
 public class OTUtilsTest extends TestCase {
 
+    public void test(){
+        System.out.println(OTUtils.degreesMinutesToDegreesDecimal(939));
+        System.out.println(OTUtils.degreesDecimalToStringDegreesMinutes(OTUtils.degreesMinutesToDegreesDecimal(-7943),false));
+        
+        System.out.println(OTUtils.degreesDecimalToStringDegreesMinutes(OTUtils.convertLatitude(4, 4730), true));
+        System.out.println(OTUtils.degreesDecimalToStringDegreesMinutes(OTUtils.convertLongitude(4, 430), false));
+        
+    }
+    
     public void testDegreesDecimalToDegreesMinutes() {
         assertEquals(3830, OTUtils.degreesDecimalToDegreesMinutes(38.5));
         assertEquals(4000, OTUtils.degreesDecimalToDegreesMinutes(40d));
