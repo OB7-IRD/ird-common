@@ -159,4 +159,13 @@ public class Message {
         return this.displayMessage("Message", locale);
     }
 
+    /**
+     * Displays the message with the parameters in the selected language.
+     *
+     * @return the String message
+     */
+    public String displayMessage() {
+        return this.displayMessage("Message", Locale.getDefault());
+    }
+
 }

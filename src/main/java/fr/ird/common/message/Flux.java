@@ -34,7 +34,7 @@ public class Flux {
 
     private ArrayList<Message> messages;
     private String identifier;
-    public static final Locale DEFAULT_LOCALE = new Locale("en", "EN");
+    public static final Locale DEFAULT_LOCALE = new Locale("fr", "FR");
     private Locale currentLocale = Flux.DEFAULT_LOCALE;
 
     /**
