@@ -23,6 +23,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
 /**
@@ -60,9 +61,10 @@ public abstract class IRDProperties {
      * @return the property of IRD application
      * @throws FileNotFoundException
      * @throws IOException
+     * @throws java.util.InvalidPropertiesFormatException
      *
      */
-    public Properties loadProperties() throws FileNotFoundException, IOException, Exception {
+    public Properties loadProperties() throws FileNotFoundException, IOException, InvalidPropertiesFormatException, Exception {
         if (PROJECT_NAME == null && PROJECT_CONFIG_FILENAME == null) {
             throw new Exception("You must set PROJECT_CONFIG_FILENAME and PROJECT_NAME.");
         }
