@@ -29,19 +29,14 @@ import junit.framework.TestCase;
  */
 public class OTUtilsTest extends TestCase {
 
-    public void test(){
-        System.out.println(OTUtils.degreesMinutesToDegreesDecimal(939));
-        System.out.println(OTUtils.degreesDecimalToStringDegreesMinutes(OTUtils.degreesMinutesToDegreesDecimal(-7943),false));
-        
-        System.out.println(OTUtils.degreesDecimalToStringDegreesMinutes(OTUtils.convertLatitude(4, 4730), true));
-        System.out.println(OTUtils.degreesDecimalToStringDegreesMinutes(OTUtils.convertLongitude(4, 430), false));
-        
-    }
-    
+   
     public void testDegreesDecimalToDegreesMinutes() {
         assertEquals(3830, OTUtils.degreesDecimalToDegreesMinutes(38.5));
         assertEquals(4000, OTUtils.degreesDecimalToDegreesMinutes(40d));
         assertEquals(2000, OTUtils.degreesDecimalToDegreesMinutes(-20.0));
+        assertEquals(2000, OTUtils.degreesDecimalToDegreesMinutes(-20.0));
+        assertEquals(1441, OTUtils.degreesDecimalToDegreesMinutes(14.68));
+        assertEquals(4318, OTUtils.degreesDecimalToDegreesMinutes(43.2964));
 
     }
 
@@ -49,5 +44,15 @@ public class OTUtilsTest extends TestCase {
         assertEquals(38.5, round(OTUtils.degreesMinutesToDegreesDecimal(3830), 2));
         assertEquals(0.15, round(OTUtils.degreesMinutesToDegreesDecimal(9), 2));
         assertEquals(-0.15, round(OTUtils.degreesMinutesToDegreesDecimal(-9), 2));
+        assertEquals(14.68, round(OTUtils.degreesMinutesToDegreesDecimal(1441), 2));
+        assertEquals(17.23, round(OTUtils.degreesMinutesToDegreesDecimal(1714), 2));
+        assertEquals(43.3, round(OTUtils.degreesMinutesToDegreesDecimal(4318), 2));
+        
+    }
+    
+    public void testDegreesDecimalToStringDegreesMinutes(){
+        assertEquals("14°41'N", OTUtils.degreesDecimalToStringDegreesMinutes(14.68, true));
+        assertEquals("17°14'W", OTUtils.degreesDecimalToStringDegreesMinutes(-17.24, false));
+        assertEquals("55°37'E", OTUtils.degreesDecimalToStringDegreesMinutes(55.62, false));
     }
 }

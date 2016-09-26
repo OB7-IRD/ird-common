@@ -324,10 +324,7 @@ public class OTUtils {
      * @return la latitude en degré décimal
      */
     public static Double convertLatitude(int quandrant, int latitude) {
-        if (quandrant == 3 || quandrant == 2) {
-            latitude = -1 * latitude;
-        }
-        return convertLatitude(latitude);
+        return convertLatitude(signLatitude(quandrant, latitude));
     }
 
     /**
@@ -339,10 +336,7 @@ public class OTUtils {
      * @return la longitude en degré décimal
      */
     public static Double convertLongitude(int quandrant, int longitude) {
-        if (quandrant == 3 || quandrant == 4) {
-            longitude = -1 * longitude;
-        }
-        return convertLongitude(longitude);
+        return convertLongitude(signLongitude(quandrant, longitude));
     }
 
     /**

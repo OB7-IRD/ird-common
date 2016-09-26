@@ -417,8 +417,8 @@ public class DateTimeUtils {
                 .withMinuteOfHour(minute)
                 .withSecondOfMinute(second);
 
-        return ldt.toDateTime(dtz);
-//        return new DateTime(date.getYear(), date.getMonthOfYear(), date.getDayOfMonth(), hour, minute, second);
+//        return ldt.toDateTime(dtz);
+        return new DateTime(date.getYear(), date.getMonthOfYear(), date.getDayOfMonth(), hour, minute, second);
     }
 
     /**

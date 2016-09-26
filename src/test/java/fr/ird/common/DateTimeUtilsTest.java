@@ -23,6 +23,7 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 
 /**
  * Test certaines methods de la classe {@link fr.ird.common.DateTimeUtils}.
@@ -61,5 +62,12 @@ public class DateTimeUtilsTest extends TestCase {
         assertEquals("1899-12-30", matcher.group("date"));
         assertEquals("15:57:00.0", matcher.group("time"));
 
+    }
+
+    public void testAddTimeTo() {
+        String field = "00:57:00";
+        DateTime dt = new DateTime(2016, 05, 16, 0, 0);
+        DateTime newDt = addTimeTo(dt, field);
+        assertEquals(new DateTime(2016, 05, 16, 00, 57), newDt);       
     }
 }
