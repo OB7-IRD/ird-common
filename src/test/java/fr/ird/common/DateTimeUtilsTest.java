@@ -68,6 +68,13 @@ public class DateTimeUtilsTest extends TestCase {
         String field = "00:57:00";
         DateTime dt = new DateTime(2016, 05, 16, 0, 0);
         DateTime newDt = addTimeTo(dt, field);
-        assertEquals(new DateTime(2016, 05, 16, 00, 57), newDt);       
+        DateTime res = new DateTime(2016, 05, 16, 00, 57, DateTimeZone.forID("UTC"));
+        assertEquals(newDt.getYear(), res.getYear());       
+        assertEquals(newDt.getMonthOfYear(), res.getMonthOfYear());       
+        assertEquals(newDt.getDayOfMonth(), res.getDayOfMonth());       
+        assertEquals(newDt.getHourOfDay(), res.getHourOfDay());       
+        assertEquals(newDt.getMinuteOfDay(), res.getMinuteOfDay());       
+        assertEquals(newDt.getZone(), res.getZone());       
+        
     }
 }
