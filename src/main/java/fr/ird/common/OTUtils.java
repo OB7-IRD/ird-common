@@ -289,12 +289,12 @@ public class OTUtils {
      * Convertit une latitude exprimée par un entier dans un quadrant en degré
      * décimal.
      *
-     * @param quandrant représente le quadrant
+     * @param quadrant représente le quadrant
      * @param latitude la latitude à signer
      * @return la latitude signé
      */
-    public static int signLatitude(int quandrant, int latitude) {
-        if (quandrant == 3 || quandrant == 2) {
+    public static int signLatitude(int quadrant, int latitude) {
+        if (quadrant == 3 || quadrant == 2) {
             latitude = -1 * latitude;
         }
         return latitude;
@@ -304,39 +304,62 @@ public class OTUtils {
      * Convertit une longitude exprimée par un entier dans un quadrant en degré
      * décimal.
      *
-     * @param quandrant représente le quadrant
+     * @param quadrant représente le quadrant
      * @param longitude la longitude à convertir
      * @return la longitude en degré décimal
      */
-    public static int signLongitude(int quandrant, int longitude) {
-        if (quandrant == 3 || quandrant == 4) {
+    public static int signLongitude(int quadrant, int longitude) {
+        if (quadrant == 3 || quadrant == 4) {
             longitude = -1 * longitude;
         }
         return longitude;
     }
 
     /**
+     * Retourne le quadrant d'une position.
+     *
+     * @param latitude la latidute
+     * @param longitude la longitude
+     * @return la valeur de quadrant
+     */
+    public static int getQuadrant(int latitude, int longitude) {
+        if (latitude > 0 && longitude > 0) {
+            return 1;
+        }
+        if (latitude < 0 && longitude > 0) {
+            return 2;
+        }
+        if (latitude < 0 && longitude < 0) {
+            return 3;
+        }
+        if (latitude > 0 && longitude < 0) {
+            return 4;
+        }
+        return -1;
+    }
+
+    /**
      * Convertit une latitude exprimée par un entier dans un quadrant en degré
      * décimal.
      *
-     * @param quandrant représente le quadrant
+     * @param quadrant représente le quadrant
      * @param latitude la latitude à convertir
      * @return la latitude en degré décimal
      */
-    public static Double convertLatitude(int quandrant, int latitude) {
-        return convertLatitude(signLatitude(quandrant, latitude));
+    public static Double convertLatitude(int quadrant, int latitude) {
+        return convertLatitude(signLatitude(quadrant, latitude));
     }
 
     /**
      * Convertit une longitude exprimée par un entier dans un quadrant en degré
      * décimal.
      *
-     * @param quandrant représente le quadrant
+     * @param quadrant représente le quadrant
      * @param longitude la longitude à convertir
      * @return la longitude en degré décimal
      */
-    public static Double convertLongitude(int quandrant, int longitude) {
-        return convertLongitude(signLongitude(quandrant, longitude));
+    public static Double convertLongitude(int quadrant, int longitude) {
+        return convertLongitude(signLongitude(quadrant, longitude));
     }
 
     /**
