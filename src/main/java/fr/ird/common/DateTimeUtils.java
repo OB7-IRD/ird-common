@@ -56,6 +56,7 @@ public class DateTimeUtils {
         return dateEqual(dtCourante, dtReference);
     }
     public static DateTimeFormatter DATE_FORMATTER = DateTimeFormat.forPattern("dd/MM/yyyy").withZone(DateTimeZone.forTimeZone(TimeZone.getDefault()));
+    public static DateTimeFormatter DATETIME_FORMATTER = DateTimeFormat.forPattern("dd/MM/yyyy HH:MM").withZone(DateTimeZone.forTimeZone(TimeZone.getDefault()));
 
     /**
      * Compares the equality of two dates, It checks the year, month and day.
