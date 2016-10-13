@@ -323,16 +323,16 @@ public class OTUtils {
      * @return la valeur de quadrant
      */
     public static int getQuadrant(int latitude, int longitude) {
-        if (latitude > 0 && longitude > 0) {
+        if (latitude >= 0 && longitude >= 0) {
             return 1;
         }
-        if (latitude < 0 && longitude > 0) {
+        if (latitude < 0 && longitude >= 0) {
             return 2;
         }
         if (latitude < 0 && longitude < 0) {
             return 3;
         }
-        if (latitude > 0 && longitude < 0) {
+        if (latitude >= 0 && longitude < 0) {
             return 4;
         }
         return -1;

@@ -55,4 +55,11 @@ public class OTUtilsTest extends TestCase {
         assertEquals("17°14'W", OTUtils.degreesDecimalToStringDegreesMinutes(-17.24, false));
         assertEquals("55°37'E", OTUtils.degreesDecimalToStringDegreesMinutes(55.62, false));
     }
+
+    public void testQuadrant(){
+        assertEquals(1, OTUtils.getQuadrant(0, 170));
+        assertEquals(2, OTUtils.getQuadrant(-4, 0));
+        assertEquals(3, OTUtils.getQuadrant(-15, -170));
+        assertEquals(4, OTUtils.getQuadrant(0, -170));
+    }
 }
