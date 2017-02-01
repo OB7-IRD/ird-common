@@ -17,6 +17,7 @@
 package fr.ird.common;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
@@ -451,4 +452,12 @@ public class DateTimeUtils {
     public static long convertSecondsInMillis(int second) {
         return second * 1000;
     }
+
+    public static DateTime convertLocalDate(LocalDate ld) {
+        if (ld == null) {
+            return null;
+        }
+        return new DateTime(ld.getYear(), ld.getMonthValue(), ld.getDayOfMonth(), 0, 0);
+    }
+
 }
