@@ -4,7 +4,7 @@
 
     <groupId>fr.ird</groupId>
     <artifactId>ird-common</artifactId>
-    <version>1.3</version>
+    <version>1.4</version>
     <packaging>jar</packaging>
 
     <name>ird-common</name>

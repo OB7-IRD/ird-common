@@ -98,4 +98,23 @@ public class LogService {
     public void logApplicationInfo(String message) {
         logger.info(message);
     }
+
+ 	/**
+	 * Log d'erreur de parsage car le fichier n'a pas été trouvé.
+	 * 
+	 * @param fileName
+	 * @param message
+	 */
+	public void logParseError(String fileName, String message) {
+		logger.error("Le parsage du fichier " + fileName
+				+ " a échoué car le parseur ne l'a pas trouvé :" + message);
+	}
+   /**
+     * Log d'alerte de l'applicatif.
+     *
+     * @param message le message d'alerte
+     */
+    public void logApplicationWarn(String message) {
+        logger.warn(message);
+    }
 }
