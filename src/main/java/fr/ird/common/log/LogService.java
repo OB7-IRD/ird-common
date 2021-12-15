@@ -16,8 +16,8 @@
  */
 package fr.ird.common.log;
 
-import org.apache.log4j.Logger;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 /**
  * Service de logs.
  *
@@ -28,7 +28,7 @@ import org.apache.log4j.Logger;
 public class LogService {
 
     private static final LogService service = new LogService();
-    private static Logger logger = Logger.getLogger(LogService.class);
+    private static Logger logger = LogManager.getLogger(LogService.class);
 
     /**
      * Constructeur privé car LogService est un singleton.
@@ -58,7 +58,7 @@ public class LogService {
      * @return LogService le service
      */
     public static LogService getService() {
-        logger = Logger.getLogger(LogService.class);
+        logger = LogManager.getLogger(LogService.class);
         return service;
     }
 
@@ -68,7 +68,7 @@ public class LogService {
      * @return LogService le service
      */
     public static LogService getService(Class classz) {
-        logger = Logger.getLogger(classz);
+        logger = LogManager.getLogger(classz);
         return service;
     }
 
