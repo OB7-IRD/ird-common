@@ -1,17 +1,16 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>fr.ird</groupId>
     <artifactId>ird-common</artifactId>
-    <version>1.4</version>
+    <version>1.5</version>
     <packaging>jar</packaging>
 
     <name>ird-common</name>
     <inceptionYear>2013</inceptionYear>
     <organization>
         <name>Ob7, IRD</name>
-        <url>http://www.ob7.ird.fr/</url>
+        <url>https://www.ob7.ird.fr/</url>
     </organization>
     <licenses>
         <license>
@@ -20,6 +19,24 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>github</id>
+            <name>GitHub ird-common Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/OB7-IRD/ird-common</url>
+        </repository>
+    </repositories>
 
     <developers>
         <developer>
@@ -37,8 +54,8 @@
     </developers>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -55,10 +72,9 @@
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-            <type>jar</type>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.16.0</version>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
@@ -66,9 +82,9 @@
             <version>20180813</version>
             <type>jar</type>
         </dependency>
-    </dependencies>    
+    </dependencies>
     <build>
-        <plugins>         
+        <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -81,7 +97,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>     
+            </plugin>
         </plugins>
     </build>
 </project>
